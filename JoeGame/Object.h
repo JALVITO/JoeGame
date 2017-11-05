@@ -44,7 +44,7 @@ public:
     void update(vector<Object> &colliders);
     void draw(RenderWindow* window);
     bool collidesWith(Object &other, int axis);
-    void underlap(Object &other, int axis);
+    void underlap(Rect<float> &otherBounds, int axis);
     void addForce(Vector2f force);
     void addForce(Vector2f force, int index);
     void setVelocity(Vector2f _velocity);

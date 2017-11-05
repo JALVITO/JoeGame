@@ -8,22 +8,26 @@
 int main(int, char const**)
 {
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(1200, 800), "SFML window", sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(900, 600), "SFML window", sf::Style::Close);
     
     window.setFramerateLimit(60);
     window.setKeyRepeatEnabled(0);
 
-    /*/
+    
     // Set the Icon
     sf::Image icon;
     if (!icon.loadFromFile(resourcePath() + "icon.png")) {
         return EXIT_FAILURE;
     }
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
-    /*/
+    
     
     // Load a sprite to display
-    sf::Texture texture;
+    sf::Texture playerTexture, texture;
+    if (!playerTexture.loadFromFile(resourcePath() + "pacman.png")) {
+        return EXIT_FAILURE;
+    }
+    
     if (!texture.loadFromFile(resourcePath() + "block.png")) {
         return EXIT_FAILURE;
     }
@@ -31,13 +35,14 @@ int main(int, char const**)
     vector<Object> allObjects;
     
     vector<int> type = {1, 1, 1, 1};
-    Entity player = Entity(0.001, type, Vector2f(32, 64), Vector2f(200, 450), &texture, 100);
+    Entity player = Entity(1, type, Vector2f(32, 64), Vector2f(200, 450), &playerTexture, 100);
     
     type = {0, 1, 1, 1};
-    allObjects.push_back(Object(0.001, type, Vector2f(1000, 128), Vector2f(-100, 550), &texture));
-    allObjects.push_back(Object(0.001, type, Vector2f(1000, 128), Vector2f(-100, 250), &texture));
-    allObjects.push_back(Object(0.001, type, Vector2f(128, 1000), Vector2f(900, 0), &texture));
-    allObjects.push_back(Object(0.001, type, Vector2f(128, 1000), Vector2f(50, 0), &texture));
+    
+    allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 550), &texture));
+    allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 250), &texture));
+    allObjects.push_back(Object(1, type, Vector2f(64, 800), Vector2f(500, 0), &texture));
+    allObjects.push_back(Object(1, type, Vector2f(64, 800), Vector2f(50, 0), &texture));
                          
     /*/
     // Create a graphical text to display
@@ -69,7 +74,7 @@ int main(int, char const**)
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
-            float fuck_copy_paste = 0.08;
+            float fuck_copy_paste = 1;
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
                 player.addForce(Vector2f(-fuck_copy_paste, 0));
             }
@@ -80,7 +85,7 @@ int main(int, char const**)
             
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up) {
                 if(player.isItGrounded())
-                    player.addForce(Vector2f(0, -fuck_copy_paste));
+                    player.addForce(Vector2f(0, -fuck_copy_paste * 2.0));
             }
             
             if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Left) {
@@ -102,7 +107,7 @@ int main(int, char const**)
         }
         
         // Clear screen
-        window.clear();
+        window.clear(sf::Color::White);
 
         // Draw all objects
         for(int i = 0; i < allObjects.size(); i++){

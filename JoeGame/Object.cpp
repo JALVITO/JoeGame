@@ -9,9 +9,9 @@
 #include <stdio.h>
 #include "Object.h"
 
-const float GRAVITY = 0.5;
+const float GRAVITY = 0.8;
 
-Object::Object(){}
+Object::Object(){};
 
 Object::Object(double _density, vector<int> &_type, Vector2f _size, Texture* texture){
     density = _density;
@@ -20,7 +20,7 @@ Object::Object(double _density, vector<int> &_type, Vector2f _size, Texture* tex
     acceleration = Vector2f();
     velocity = Vector2f();
     position = Vector2f();
-    mass = density * pow((size.x * size.y), 1/5.0);
+    mass = density / 100.0 * cbrt((size.x * size.y));
     theta = 0;
     sprite.setTexture(*texture);
     //sprite.setColor(Color(255, 255, 255, 255));
@@ -71,40 +71,33 @@ bool Object::collidesWith(Object &other, int axis){
         if(ownBounds.left < otherBounds.left + otherBounds.width)
             if(ownBounds.top + ownBounds.height > otherBounds.top)
                 if(ownBounds.top < otherBounds.top + otherBounds.height){
-                    //underlap(otherBounds);
-                    underlap(other, axis);
+                    underlap(otherBounds, axis);
+                    //underlap(other, axis);
                     return true;
                 }
-    
-    /*/
-    if(sprite.getGlobalBounds().intersects((*other).sprite.getGlobalBounds())){
-        underlap(other);
-        return true;
-    }
-    /*/
     
     return false;
 }
 
-void Object::underlap(Object &other, int axis){
+void Object::underlap(Rect<float> &otherBounds, int axis){
     if(!axis){
         if(velocity.x > 0 ){
-            position.x -= position.x + size.x - other.sprite.getGlobalBounds().left;
+            position.x -= position.x + size.x - otherBounds.left;
         }
     
         if(velocity.x < 0 ){
-            position.x += other.sprite.getGlobalBounds().left + other.sprite.getGlobalBounds().width - position.x;
+            position.x += otherBounds.left + otherBounds.width - position.x;
         }
     }
     
     else{
         if(velocity.y > 0 ){
-            position.y -= position.y + size.y - other.sprite.getGlobalBounds().top;
+            position.y -= position.y + size.y - otherBounds.top;
             isGrounded = true;
         }
     
         if(velocity.y < 0 ){
-            position.y += other.sprite.getGlobalBounds().top + other.sprite.getGlobalBounds().height - position.y;
+            position.y += otherBounds.top + otherBounds.height - position.y;
         }
         
         velocity = Vector2f(velocity.x, 0);

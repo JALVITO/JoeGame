@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AD1BCCA1FAEF75300FAD766 /* pacman.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AD1BCC91FAEF75300FAD766 /* pacman.png */; };
 		DB1F92A61FAE38DD002BA52D /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB1F92A51FAE38DD002BA52D /* ResourcePath.mm */; };
 		DB1F92A91FAE38DD002BA52D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB1F92A81FAE38DD002BA52D /* main.cpp */; };
-		DB1F92AC1FAE38DD002BA52D /* cute_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DB1F92AB1FAE38DD002BA52D /* cute_image.jpg */; };
-		DB1F92AE1FAE38DD002BA52D /* nice_music.ogg in Resources */ = {isa = PBXBuildFile; fileRef = DB1F92AD1FAE38DD002BA52D /* nice_music.ogg */; };
 		DB1F92B01FAE38DD002BA52D /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB1F92AF1FAE38DD002BA52D /* sansation.ttf */; };
 		DB1F92B21FAE38DD002BA52D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DB1F92B11FAE38DD002BA52D /* icon.png */; };
 		DB1F92BA1FAE4143002BA52D /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB1F92B91FAE4143002BA52D /* Object.cpp */; };
@@ -19,13 +18,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0AD1BCC91FAEF75300FAD766 /* pacman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pacman.png; sourceTree = "<group>"; };
 		DB1F92A01FAE38DD002BA52D /* JoeGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JoeGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB1F92A41FAE38DD002BA52D /* JoeGame-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JoeGame-Info.plist"; sourceTree = "<group>"; };
 		DB1F92A51FAE38DD002BA52D /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
 		DB1F92A71FAE38DD002BA52D /* ResourcePath.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourcePath.hpp; sourceTree = "<group>"; };
 		DB1F92A81FAE38DD002BA52D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		DB1F92AB1FAE38DD002BA52D /* cute_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cute_image.jpg; sourceTree = "<group>"; };
-		DB1F92AD1FAE38DD002BA52D /* nice_music.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = nice_music.ogg; sourceTree = "<group>"; };
 		DB1F92AF1FAE38DD002BA52D /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
 		DB1F92B11FAE38DD002BA52D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		DB1F92B81FAE3A11002BA52D /* Object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Object.h; sourceTree = "<group>"; };
@@ -89,9 +87,8 @@
 		DB1F92AA1FAE38DD002BA52D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0AD1BCC91FAEF75300FAD766 /* pacman.png */,
 				DB1F92BB1FAE4EC7002BA52D /* block.png */,
-				DB1F92AB1FAE38DD002BA52D /* cute_image.jpg */,
-				DB1F92AD1FAE38DD002BA52D /* nice_music.ogg */,
 				DB1F92AF1FAE38DD002BA52D /* sansation.ttf */,
 				DB1F92B11FAE38DD002BA52D /* icon.png */,
 			);
@@ -158,8 +155,7 @@
 			files = (
 				DB1F92B21FAE38DD002BA52D /* icon.png in Resources */,
 				DB1F92B01FAE38DD002BA52D /* sansation.ttf in Resources */,
-				DB1F92AE1FAE38DD002BA52D /* nice_music.ogg in Resources */,
-				DB1F92AC1FAE38DD002BA52D /* cute_image.jpg in Resources */,
+				0AD1BCCA1FAEF75300FAD766 /* pacman.png in Resources */,
 				DB1F92BC1FAE4EC7002BA52D /* block.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
