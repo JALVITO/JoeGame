@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "Object.h"
 
-const float GRAVITY = 0.8;
+const float GRAVITY = 1;
 
 Object::Object(){};
 
@@ -30,7 +30,21 @@ Object::Object(double _density, vector<int> &_type, Vector2f _size, Texture* tex
 
 Object::Object(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture) : Object(_density, _type, _size, texture){
     position = _position;
+    sprite.setPosition(position);
 }
+
+void Object::update(){
+    // Add gravity force
+    addForce(Vector2f(0, GRAVITY * mass), 0);
+    // Add acceleration to velocity
+    velocity += acceleration;
+    // Reset acceleration
+    acceleration = Vector2f();
+    // Add velocity to position
+    position += velocity;
+    sprite.setPosition(position);
+}
+
 void Object::update(vector<Object> &colliders){
     // Add gravity force
     addForce(Vector2f(0, GRAVITY * mass), 0);
@@ -40,7 +54,6 @@ void Object::update(vector<Object> &colliders){
     acceleration = Vector2f();
     // Add velocity to position on the x axis
     position.x += velocity.x;
-    // Add velocity to position on the x axis
     sprite.setPosition(position);
     // Check for collision with each of the provided objects
     for(int i = 0; i < colliders.size(); i++){
@@ -48,7 +61,6 @@ void Object::update(vector<Object> &colliders){
     }
     // Add velocity to position on the y axis
     position.y += velocity.y;
-    // Add velocity to position on the x axis
     sprite.setPosition(position);
     // Check for collision with each of the provided objects
     for(int i = 0; i < colliders.size(); i++){

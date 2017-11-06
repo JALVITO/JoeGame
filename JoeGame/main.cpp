@@ -40,10 +40,15 @@ int main(int, char const**)
     type = {0, 1, 1, 1};
     
     allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 550), &texture));
-    allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 250), &texture));
+    allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 150), &texture));
     allObjects.push_back(Object(1, type, Vector2f(64, 800), Vector2f(500, 0), &texture));
     allObjects.push_back(Object(1, type, Vector2f(64, 800), Vector2f(50, 0), &texture));
-                         
+    
+    allObjects.push_back(Object(1, type, Vector2f(48, 48), Vector2f(200, 435), &texture));
+    
+    //allObjects.at(4).setVelocity(Vector2f(0, -2));
+    
+    
     /*/
     // Create a graphical text to display
     sf::Font font;
@@ -74,7 +79,7 @@ int main(int, char const**)
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
-            float fuck_copy_paste = 1;
+            float fuck_copy_paste = 0.8;
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
                 player.addForce(Vector2f(-fuck_copy_paste, 0));
             }
@@ -85,7 +90,7 @@ int main(int, char const**)
             
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up) {
                 if(player.isItGrounded())
-                    player.addForce(Vector2f(0, -fuck_copy_paste * 2.0));
+                    player.addForce(Vector2f(0, -fuck_copy_paste * 2.5));
             }
             
             if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Left) {
@@ -101,11 +106,10 @@ int main(int, char const**)
         player.update(allObjects);
         
         // Update Object physics
-        vector<Object> empty = {};
         for(int i = 0; i < allObjects.size(); i++){
-            allObjects.at(i).update(empty);
+            allObjects.at(i).update();
         }
-        
+
         // Clear screen
         window.clear(sf::Color::White);
 
