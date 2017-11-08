@@ -11,6 +11,7 @@
 
 Entity::Entity(){};
 
+//probs nos deberíamos deshacer de este constructor, por code simplicity.
 Entity::Entity(double _density, vector<int> &_type, Vector2f _size, Texture* texture, int _maxHp) : Object(_density, _type, _size, texture){
     
     maxHp = _maxHp;

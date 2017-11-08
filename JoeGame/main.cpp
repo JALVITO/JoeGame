@@ -48,26 +48,6 @@ int main(int, char const**)
     
     //allObjects.at(4).setVelocity(Vector2f(0, -2));
     
-    
-    /*/
-    // Create a graphical text to display
-    sf::Font font;
-    if (!font.loadFromFile(resourcePath() + "sansation.ttf")) {
-        return EXIT_FAILURE;
-    }
-    sf::Text text("Hello SFML", font, 50);
-    text.setFillColor(sf::Color::Black);
-
-    // Load a music to play
-    sf::Music music;
-    if (!music.openFromFile(resourcePath() + "nice_music.ogg")) {
-        return EXIT_FAILURE;
-    }
-    
-    // Play the music
-    music.play();
-    /*/
-    
     // Start the game loop
     while (window.isOpen())
     {

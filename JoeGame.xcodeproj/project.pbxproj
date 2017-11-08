@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0AD1BCCA1FAEF75300FAD766 /* pacman.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AD1BCC91FAEF75300FAD766 /* pacman.png */; };
+		3F52B7771FB292C900BFDE4E /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F52B7761FB292C900BFDE4E /* Enemy.cpp */; };
+		3F52B77B1FB2AC4300BFDE4E /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F52B77A1FB2AC4300BFDE4E /* Weapon.cpp */; };
 		DB1F92A61FAE38DD002BA52D /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB1F92A51FAE38DD002BA52D /* ResourcePath.mm */; };
 		DB1F92A91FAE38DD002BA52D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB1F92A81FAE38DD002BA52D /* main.cpp */; };
 		DB1F92B01FAE38DD002BA52D /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB1F92AF1FAE38DD002BA52D /* sansation.ttf */; };
@@ -19,6 +21,10 @@
 
 /* Begin PBXFileReference section */
 		0AD1BCC91FAEF75300FAD766 /* pacman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pacman.png; sourceTree = "<group>"; };
+		3F52B7761FB292C900BFDE4E /* Enemy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
+		3F52B7781FB292D300BFDE4E /* Enemy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		3F52B7791FB2AC0A00BFDE4E /* Weapon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Weapon.h; sourceTree = "<group>"; };
+		3F52B77A1FB2AC4300BFDE4E /* Weapon.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Weapon.cpp; sourceTree = "<group>"; };
 		DB1F92A01FAE38DD002BA52D /* JoeGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JoeGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB1F92A41FAE38DD002BA52D /* JoeGame-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JoeGame-Info.plist"; sourceTree = "<group>"; };
 		DB1F92A51FAE38DD002BA52D /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
@@ -66,10 +72,14 @@
 				DB1F92A51FAE38DD002BA52D /* ResourcePath.mm */,
 				DB1F92A71FAE38DD002BA52D /* ResourcePath.hpp */,
 				DB1F92A81FAE38DD002BA52D /* main.cpp */,
-				DB1F92BD1FAE9494002BA52D /* Entity.h */,
-				DB1F92BE1FAE95C1002BA52D /* Entity.cpp */,
 				DB1F92B81FAE3A11002BA52D /* Object.h */,
 				DB1F92B91FAE4143002BA52D /* Object.cpp */,
+				DB1F92BD1FAE9494002BA52D /* Entity.h */,
+				DB1F92BE1FAE95C1002BA52D /* Entity.cpp */,
+				3F52B7781FB292D300BFDE4E /* Enemy.h */,
+				3F52B7761FB292C900BFDE4E /* Enemy.cpp */,
+				3F52B7791FB2AC0A00BFDE4E /* Weapon.h */,
+				3F52B77A1FB2AC4300BFDE4E /* Weapon.cpp */,
 				DB1F92AA1FAE38DD002BA52D /* Resources */,
 				DB1F92A31FAE38DD002BA52D /* Supporting Files */,
 			);
@@ -184,7 +194,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB1F92BF1FAE95C1002BA52D /* Entity.cpp in Sources */,
+				3F52B77B1FB2AC4300BFDE4E /* Weapon.cpp in Sources */,
 				DB1F92A91FAE38DD002BA52D /* main.cpp in Sources */,
+				3F52B7771FB292C900BFDE4E /* Enemy.cpp in Sources */,
 				DB1F92A61FAE38DD002BA52D /* ResourcePath.mm in Sources */,
 				DB1F92BA1FAE4143002BA52D /* Object.cpp in Sources */,
 			);

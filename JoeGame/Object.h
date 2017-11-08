@@ -59,8 +59,5 @@ public:
     
 };
 
-//(&(*this))->a = a;
-
-
 
 #endif /* Object_h */
