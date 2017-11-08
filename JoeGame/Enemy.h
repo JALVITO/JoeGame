@@ -18,9 +18,8 @@ protected:
     Weapon weapon;
 public:
     Enemy();
-    Enemy(double _density, vector<int> &_type, Vector2f _size, Texture* texture, int _maxHp, Weapon _weapon);
     Enemy(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp, Weapon _weapon);
     void pathFinding();
     
-}
+};
 #endif /* Enemy_h */
