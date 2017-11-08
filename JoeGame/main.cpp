@@ -47,6 +47,8 @@ int main(int, char const**)
     allObjects.push_back(Object(1, type, Vector2f(48, 48), Vector2f(200, 435), &texture));
     
     //allObjects.at(4).setVelocity(Vector2f(0, -2));
+    //allObjects.at(1).setVelocity(Vector2f(0, 2));
+    //allObjects.at(3).setVelocity(Vector2f(2, 0));
     
     // Start the game loop
     while (window.isOpen())
