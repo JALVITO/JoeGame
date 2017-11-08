@@ -11,14 +11,6 @@
 
 Entity::Entity(){};
 
-//probs nos deberíamos deshacer de este constructor, por code simplicity.
-Entity::Entity(double _density, vector<int> &_type, Vector2f _size, Texture* texture, int _maxHp) : Object(_density, _type, _size, texture){
-    
-    maxHp = _maxHp;
-    hp = maxHp;
-    isGrounded = false;
-    
-}
 Entity::Entity(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp) : Object(_density, _type, _size, _position, texture){
     
     maxHp = _maxHp;

@@ -12,10 +12,6 @@
 
 Enemy::Enemy(){};
 
-Enemy::Enemy(double _density, vector<int> &_type, Vector2f _size, Texture* texture, int _maxHp, Weapon _weapon) : Entity(_density, _type, _size, texture, _maxHp){
-    weapon = _weapon;
-};
-
 Enemy::Enemy(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp, Weapon _weapon) : Entity(_density, _type, _size, _position, texture, _maxHp){
     weapon = _weapon;
 };
