@@ -40,32 +40,20 @@ int main(int, char const**)
     }
     
     vector<Object> allObjects;
+    vector<Player> allPlayers;
+    vector<Bullet> allBullets;
     
     vector<int> type = {0, 1, 1, 1};
-
-    Weapon weapon = Weapon(1, type, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20);
     
-    type = {0, 1, 1, 1};
+    Weapon weapon = Weapon(1, type, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20);
     
     allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 550), &blockTexture));
     allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 150), &blockTexture));
     allObjects.push_back(Object(1, type, Vector2f(64, 800), Vector2f(500, 0), &blockTexture));
     allObjects.push_back(Object(1, type, Vector2f(64, 800), Vector2f(50, 0), &blockTexture));
-    
     allObjects.push_back(Object(1, type, Vector2f(48, 48), Vector2f(200, 435), &blockTexture));
-    
-    type = {1, 1, 1, 1};
-    
-    //Weapon(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, double _firingRate, double _damage);
-    
-    //Player player = Player(1, type, Vector2f(32, 64), Vector2f(200, 450), &playerTexture, 100);
-    Player player = Player(1, type, Vector2f(32, 64), Vector2f(200, 450), &playerTexture, 100, 0, 0, &weapon);
-    Bullet bullet = Bullet(1, type, Vector2f(8,8), Vector2f(300,300), &playerTexture, 5);
-    //float _jumpForce, float _moveForce, Weapon* _weapon
-    
-    //allObjects.at(4).setVelocity(Vector2f(0, -2));
-    //allObjects.at(1).setVelocity(Vector2f(0, 2));
-    //allObjects.at(3).setVelocity(Vector2f(2, 0));
+    allPlayers.push_back(Player(1, type, Vector2f(32, 64), Vector2f(200, 275), &playerTexture, 100, 0, 0, &weapon));
+    allBullets.push_back(Bullet(1, type, Vector2f(8,8), Vector2f(300,300), &playerTexture, 5));
     
     // Start the game loop
     while (window.isOpen())
@@ -80,30 +68,40 @@ int main(int, char const**)
             }
             float fuck_copy_paste = 0.8;
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::A) {
-                player.addForce(Vector2f(-fuck_copy_paste, 0));
+                allPlayers.at(0).addForce(Vector2f(-fuck_copy_paste, 0));
             }
             
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::D) {
-                player.addForce(Vector2f(fuck_copy_paste, 0));
+                allPlayers.at(0).addForce(Vector2f(fuck_copy_paste, 0));
             }
             
             if((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::W || event.key.code == sf::Keyboard::Space)) {
-                if(player.isItGrounded())
-                    player.addForce(Vector2f(0, -fuck_copy_paste * 2.5));
+                if(allPlayers.at(0).isItGrounded())
+                    allPlayers.at(0).addForce(Vector2f(0, -fuck_copy_paste * 2.5));
             }
             
             if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::A) {
-                player.addForce(Vector2f(fuck_copy_paste, 0));
+                allPlayers.at(0).addForce(Vector2f(fuck_copy_paste, 0));
             }
             
             if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::D) {
-                player.addForce(Vector2f(-fuck_copy_paste, 0));
+                allPlayers.at(0).addForce(Vector2f(-fuck_copy_paste, 0));
             }
         }
+
+        // Update Bullet physics
+        for(int i = 0; i < allBullets.size(); i++){
+            if (allBullets.at(i).isItDestroyed()){
+                allBullets.erase(allBullets.begin() + i);
+                continue;
+            }
+            allBullets.at(i).update(allObjects,allPlayers);
+        }
         
-        // Update player physics
-        player.update(allObjects);
-        bullet.update(allObjects);
+        // Update Player physics
+        for(int i = 0; i < allPlayers.size(); i++){
+            allPlayers.at(i).update(allObjects);
+        }
         
         // Update Object physics
         for(int i = 0; i < allObjects.size(); i++){
@@ -118,9 +116,15 @@ int main(int, char const**)
             allObjects.at(i).draw(&window);
         }
         
-        // Draw Player
-        player.draw(&window);
-        bullet.draw(&window);
+        // Draw Players
+        for(int i = 0; i < allPlayers.size(); i++){
+            allPlayers.at(i).draw(&window);
+        }
+        
+        // Draw Bullets
+        for(int i = 0; i < allBullets.size(); i++){
+            allBullets.at(i).draw(&window);
+        }
         
         // Update the window
         window.display();

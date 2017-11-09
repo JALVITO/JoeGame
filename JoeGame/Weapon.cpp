@@ -14,3 +14,7 @@ Weapon::Weapon(){};
 Weapon::Weapon(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, double _firingRate) : Object(_density, _type, _size, _position, texture){
     firingRate = _firingRate;
 }
+
+void Weapon::fire(){
+    
+}

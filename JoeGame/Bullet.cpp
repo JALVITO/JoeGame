@@ -13,11 +13,12 @@
 
 Bullet::Bullet(){};
 
-Bullet::Bullet(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, double _damage) : Object(_density, _type, _size, _position, texture){
+Bullet::Bullet(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _damage) : Object(_density, _type, _size, _position, texture){
     damage = _damage;
+    isDestroyed = false;
 }
 
-void Bullet::update(vector<Object> &colliders){
+void Bullet::update(vector<Object> &objectcol, vector<Player> &playercol){
     // Add gravity force
     addForce(Vector2f(0, GRAVITY * mass), 0);
     // Add acceleration to velocity
@@ -27,36 +28,34 @@ void Bullet::update(vector<Object> &colliders){
     // Add velocity to position on the x axis
     position += velocity;
     sprite.setPosition(position);
-    for(int i = 0; i < colliders.size(); i++){
-        if(collidesWith(colliders.at(i))){
-            try{
-                DealDamage(colliders.at(i));
-                Destroy();
-            }catch(exception e){
-                Destroy();
-            }
-           
+    for(int i = 0; i < objectcol.size(); i++){
+        if(collidesWith(objectcol.at(i))){
+            Destroy();
+        }
+    }
+
+    for(int i = 0; i < playercol.size(); i++){
+        if(collidesWith(playercol.at(i))){
+            cout << "Hola" << endl;
+            DealDamage(playercol.at(i), damage);
+            Destroy();
         }
     }
 }
 
-void Bullet::Destroy(){
 
-}
-
-void Bullet::DealDamage(Object &other){
-    
+void Bullet::DealDamage(Entity &other, int _damage){
+    other.recieveDamage(_damage);
 }
 
 bool Bullet::collidesWith(Object &other){
-    //punto = bullet.position
+    center = Vector2f(getPosition().x + getSize().x / 2.0 , getPosition().y + getSize().y / 2.0);
     Rect<float> otherBounds = other.getSprite()->getGlobalBounds();
     
-    if(getPosition().x > otherBounds.left && getPosition().x < otherBounds.left + otherBounds.width && getPosition().y > otherBounds.top && getPosition().y < otherBounds.top + otherBounds.height){
+    if(center.x > otherBounds.left && center.x < otherBounds.left + otherBounds.width && center.y > otherBounds.top && center.y < otherBounds.top + otherBounds.height){
         return true;
     }
     
     return false;
 }
-
 

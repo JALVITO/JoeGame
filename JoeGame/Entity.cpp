@@ -33,3 +33,9 @@ void Entity::update(vector<Object> &colliders){
 bool Entity::isItGrounded(){
     return isGrounded;
 }
+
+void Entity::recieveDamage(int _damage){
+    hp -= _damage;
+    cout << hp << endl;
+}
+

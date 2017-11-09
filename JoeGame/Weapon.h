@@ -17,7 +17,7 @@ protected:
 public:
     Weapon();
     Weapon(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, double _firingRate);
-    //void fire();
+    void fire();
 };
 
 #endif /* Weapon_h */

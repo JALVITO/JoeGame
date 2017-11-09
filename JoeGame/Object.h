@@ -38,6 +38,7 @@ protected:
     double density, mass, theta;
     bool isGrounded;
     Sprite sprite;
+    bool isDestroyed;
 public:
     Object();
     Object(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture);
@@ -58,7 +59,9 @@ public:
     bool isItGrounded();
     Vector2f getPosition();
     void setPosition(Vector2f _position);
-    
+    void Destroy();
+    bool isItDestroyed();
+    Vector2f getSize();
 };
 
 

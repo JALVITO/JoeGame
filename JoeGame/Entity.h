@@ -20,6 +20,7 @@ public:
     void die();
     void update(vector<Object> &colliders);
     bool isItGrounded();
+    void recieveDamage(int _damage);
 };
 
 #endif /* Entity_h */

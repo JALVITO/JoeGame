@@ -155,7 +155,17 @@ void Object::setPosition(Vector2f _position){
     position = _position;
 }
 
+bool Object::isItDestroyed(){
+    return isDestroyed;
+}
 
+void Object::Destroy(){
+    isDestroyed = true;
+}
+
+Vector2f Object::getSize(){
+    return size;
+}
 
 
 
