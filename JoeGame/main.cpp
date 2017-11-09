@@ -42,7 +42,6 @@ int main(int, char const**)
     vector<Object> allObjects;
     vector<Player> allPlayers;
     vector<Bullet> allBullets;
-    
 
     vector<int> type = {0, 1, 1, 1};
     
