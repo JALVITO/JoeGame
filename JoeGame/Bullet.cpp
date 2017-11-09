@@ -29,7 +29,6 @@ void Bullet::update(vector<Object> &colliders){
     sprite.setPosition(position);
     for(int i = 0; i < colliders.size(); i++){
         if(collidesWith(colliders.at(i))){
-            cout << "Hola! funciona!" << endl;
             try{
                 DealDamage(colliders.at(i));
                 Destroy();
@@ -37,8 +36,6 @@ void Bullet::update(vector<Object> &colliders){
                 Destroy();
             }
            
-        }else{
-            cout << "=(" << endl;
         }
     }
 }
@@ -53,9 +50,9 @@ void Bullet::DealDamage(Object &other){
 
 bool Bullet::collidesWith(Object &other){
     //punto = bullet.position
-    Rect<float> otherBounds = other.getSprite().getGlobalBounds();
+    Rect<float> otherBounds = other.getSprite()->getGlobalBounds();
     
-    if(getPosition().x > otherBounds.left && getPosition().x < otherBounds.width && getPosition().y > otherBounds.height && getPosition().y < otherBounds.top){
+    if(getPosition().x > otherBounds.left && getPosition().x < otherBounds.left + otherBounds.width && getPosition().y > otherBounds.top && getPosition().y < otherBounds.top + otherBounds.height){
         return true;
     }
     
