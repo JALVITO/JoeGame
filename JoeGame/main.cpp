@@ -43,6 +43,7 @@ int main(int, char const**)
     vector<Player> allPlayers;
     vector<Bullet> allBullets;
     
+
     vector<int> type = {0, 1, 1, 1};
     
     Weapon weapon = Weapon(1, type, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20);
