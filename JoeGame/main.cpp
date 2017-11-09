@@ -26,26 +26,36 @@ int main(int, char const**)
     
     
     // Load a sprite to display
-    sf::Texture playerTexture, texture;
+    sf::Texture playerTexture, blockTexture, gunTexture;
     if (!playerTexture.loadFromFile(resourcePath() + "pacman.png")) {
         return EXIT_FAILURE;
     }
     
-    if (!texture.loadFromFile(resourcePath() + "block.png")) {
+    if (!gunTexture.loadFromFile(resourcePath() + "gun.png")) {
+        return EXIT_FAILURE;
+    }
+    
+    if (!blockTexture.loadFromFile(resourcePath() + "block.png")) {
         return EXIT_FAILURE;
     }
     
     vector<Object> allObjects;
     
     vector<int> type = {0, 1, 1, 1};
+<<<<<<< HEAD
     Weapon weapon = Weapon(1, type, Vector2f(10,20), Vector2f(200,450), &playerTexture, 20);
+=======
+    Weapon weapon = Weapon(1, type, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20);
     
-    allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 550), &texture));
-    allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 150), &texture));
-    allObjects.push_back(Object(1, type, Vector2f(64, 800), Vector2f(500, 0), &texture));
-    allObjects.push_back(Object(1, type, Vector2f(64, 800), Vector2f(50, 0), &texture));
+    type = {0, 1, 1, 1};
+>>>>>>> 0a18dbbd7fd0cad5d7b133793769ea70a87f5528
     
-    allObjects.push_back(Object(1, type, Vector2f(48, 48), Vector2f(200, 435), &texture));
+    allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 550), &blockTexture));
+    allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 150), &blockTexture));
+    allObjects.push_back(Object(1, type, Vector2f(64, 800), Vector2f(500, 0), &blockTexture));
+    allObjects.push_back(Object(1, type, Vector2f(64, 800), Vector2f(50, 0), &blockTexture));
+    
+    allObjects.push_back(Object(1, type, Vector2f(48, 48), Vector2f(200, 435), &blockTexture));
     
     type = {0, 1, 1, 1};
     
@@ -72,25 +82,43 @@ int main(int, char const**)
                 window.close();
             }
             float fuck_copy_paste = 0.8;
+<<<<<<< HEAD
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
                 bullet.addForce(Vector2f(-fuck_copy_paste, 0));
             }
             
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
                 bullet.addForce(Vector2f(fuck_copy_paste, 0));
+=======
+            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::A) {
+                player.addForce(Vector2f(-fuck_copy_paste, 0));
             }
             
-            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up) {
+            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::D) {
+                player.addForce(Vector2f(fuck_copy_paste, 0));
+>>>>>>> 0a18dbbd7fd0cad5d7b133793769ea70a87f5528
+            }
+            
+            if((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::W || event.key.code == sf::Keyboard::Space)) {
                 if(player.isItGrounded())
                     bullet.addForce(Vector2f(0, -fuck_copy_paste * 2.5));
             }
             
+<<<<<<< HEAD
             if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Left) {
                 bullet.addForce(Vector2f(fuck_copy_paste, 0));
             }
             
             if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Right) {
                 bullet.addForce(Vector2f(-fuck_copy_paste, 0));
+=======
+            if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::A) {
+                player.addForce(Vector2f(fuck_copy_paste, 0));
+            }
+            
+            if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::D) {
+                player.addForce(Vector2f(-fuck_copy_paste, 0));
+>>>>>>> 0a18dbbd7fd0cad5d7b133793769ea70a87f5528
             }
         }
         
