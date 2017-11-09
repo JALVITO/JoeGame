@@ -17,6 +17,7 @@
 		DB1F92BA1FAE4143002BA52D /* Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB1F92B91FAE4143002BA52D /* Object.cpp */; };
 		DB1F92BC1FAE4EC7002BA52D /* block.png in Resources */ = {isa = PBXBuildFile; fileRef = DB1F92BB1FAE4EC7002BA52D /* block.png */; };
 		DB1F92BF1FAE95C1002BA52D /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB1F92BE1FAE95C1002BA52D /* Entity.cpp */; };
+		DB6B98A31FB3C814000EA66A /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB6B98A21FB3C814000EA66A /* Player.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		DB1F92BB1FAE4EC7002BA52D /* block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = block.png; sourceTree = "<group>"; };
 		DB1F92BD1FAE9494002BA52D /* Entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		DB1F92BE1FAE95C1002BA52D /* Entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
+		DB6B98A11FB3C59F000EA66A /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		DB6B98A21FB3C814000EA66A /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,8 @@
 				DB1F92B91FAE4143002BA52D /* Object.cpp */,
 				DB1F92BD1FAE9494002BA52D /* Entity.h */,
 				DB1F92BE1FAE95C1002BA52D /* Entity.cpp */,
+				DB6B98A11FB3C59F000EA66A /* Player.h */,
+				DB6B98A21FB3C814000EA66A /* Player.cpp */,
 				3F52B7781FB292D300BFDE4E /* Enemy.h */,
 				3F52B7761FB292C900BFDE4E /* Enemy.cpp */,
 				3F52B7791FB2AC0A00BFDE4E /* Weapon.h */,
@@ -194,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB1F92BF1FAE95C1002BA52D /* Entity.cpp in Sources */,
+				DB6B98A31FB3C814000EA66A /* Player.cpp in Sources */,
 				3F52B77B1FB2AC4300BFDE4E /* Weapon.cpp in Sources */,
 				DB1F92A91FAE38DD002BA52D /* main.cpp in Sources */,
 				3F52B7771FB292C900BFDE4E /* Enemy.cpp in Sources */,

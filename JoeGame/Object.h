@@ -39,7 +39,6 @@ protected:
     Sprite sprite;
 public:
     Object();
-    Object(double _density, vector<int> &_type, Vector2f _size, Texture* texture);
     Object(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture);
     void update();
     void update(vector<Object> &colliders);
@@ -56,6 +55,9 @@ public:
     //void setSprite(Sprite* sprite); TBI
     Sprite getSprite();
     bool isItGrounded();
+    Vector2f getPosition();
+    void setTheta(float _theta);
+    float getTheta();
     
 };
 
