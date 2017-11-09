@@ -18,7 +18,7 @@ Bullet::Bullet(double _density, vector<int> &_type, Vector2f _size, Vector2f _po
     isDestroyed = false;
 }
 
-void Bullet::update(vector<Object> &objectcol, vector<Player> &playercol){
+void Bullet::update(vector<Object> &objectcol, vector<Entity> &entitycol){
     // Add gravity force
     addForce(Vector2f(0, GRAVITY * mass), 0);
     // Add acceleration to velocity
@@ -34,10 +34,9 @@ void Bullet::update(vector<Object> &objectcol, vector<Player> &playercol){
         }
     }
 
-    for(int i = 0; i < playercol.size(); i++){
-        if(collidesWith(playercol.at(i))){
-            cout << "Hola" << endl;
-            DealDamage(playercol.at(i), damage);
+    for(int i = 0; i < entitycol.size(); i++){
+        if(collidesWith(entitycol.at(i))){
+            DealDamage(entitycol.at(i), damage);
             Destroy();
         }
     }

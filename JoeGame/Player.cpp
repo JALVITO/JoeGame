@@ -52,7 +52,7 @@ void Player::pointWeapon(RenderWindow* window){
     }
 
     
-    rayCast = RectangleShape(Vector2f(2,1000));
+    rayCast = RectangleShape(Vector2f(1, 1000));
     rayCast.setFillColor(sf::Color::Red);
     rayCast.setPosition(weapon.getPosition());
     rayCast.rotate(angle);
@@ -60,3 +60,11 @@ void Player::pointWeapon(RenderWindow* window){
     weapon.getSprite()->setRotation(angle + 90);
     
 };
+
+void Player::fireWeapon(vector<Bullet> &bullets){
+    weapon.fire(bullets);
+}
+
+Weapon* Player::getWeapon(){
+    return &weapon;
+}

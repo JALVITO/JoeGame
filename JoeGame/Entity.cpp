@@ -21,6 +21,7 @@ Entity::Entity(double _density, vector<int> &_type, Vector2f _size, Vector2f _po
 
 void Entity::die(){
     cout << "endl" << endl;
+    Destroy();
 }
 
 void Entity::update(vector<Object> &colliders){

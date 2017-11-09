@@ -11,6 +11,7 @@
 
 #include "Entity.h"
 #include "Weapon.h"
+#include "Bullet.h"
 
 class Player : public Entity{
 protected:
@@ -26,7 +27,8 @@ public:
     void update(vector<Object> &colliders);
     void draw(RenderWindow* window);
     void pointWeapon(RenderWindow* window);
-    void fireWeapon();
+    void fireWeapon(vector<Bullet> &bullets);
+    Weapon* getWeapon();
     
 };
 
