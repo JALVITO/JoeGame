@@ -63,8 +63,6 @@ void Object::update(vector<Object> &colliders){
     if (velocity.y != 0)
         isGrounded = false;
     
-    //Sprite rotation
-    sprite.setRotation(theta);
 }
 void Object::draw(RenderWindow* window){
     (*window).draw(sprite);
@@ -145,20 +143,16 @@ float Object::getVelocityY(){
     return velocity.y;
 }
 
-Sprite Object::getSprite(){
-    return sprite;
+Sprite* Object::getSprite(){
+    return &sprite;
 }
 
 Vector2f Object::getPosition(){
     return position;
 }
 
-void Object::setTheta(float _theta){
-    theta = _theta;
-}
-
-float Object::getTheta(){
-    return theta;
+void Object::setPosition(Vector2f _position){
+    position = _position;
 }
 
 

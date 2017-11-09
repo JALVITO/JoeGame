@@ -54,11 +54,10 @@ public:
     float getVelocityX();
     float getVelocityY();
     //void setSprite(Sprite* sprite); TBI
-    Sprite getSprite();
+    Sprite* getSprite();
     bool isItGrounded();
     Vector2f getPosition();
-    void setTheta(float _theta);
-    float getTheta();
+    void setPosition(Vector2f _position);
     
 };
 

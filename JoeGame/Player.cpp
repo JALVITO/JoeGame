@@ -20,6 +20,8 @@ Player::Player(double _density, vector<int> &_type, Vector2f _size, Vector2f _po
 
 void Player::update(vector<Object> &colliders){
     Entity::update(colliders);
+    weapon.setPosition(getPosition());
+    weapon.update();
     //pointWeapon();
 }
 
@@ -49,15 +51,17 @@ void Player::pointWeapon(RenderWindow* window){
             angle = -angle;
     }
     
-    weapon.setTheta(angle);
-    cout << angle << endl;
-    cout << "x: " << mousePos.x - weapon.getPosition().x << endl;
-    cout << "y: " << mousePos.y - weapon.getPosition().y << endl;
+    //weapon.setTheta(angle);
+    //cout << angle << endl;
+    //cout << "x: " << mousePos.x - weapon.getPosition().x << endl;
+    //cout << "y: " << mousePos.y - weapon.getPosition().y << endl;
 
     
-    rayCast = RectangleShape(Vector2f(5,1000));
+    rayCast = RectangleShape(Vector2f(2,1000));
     rayCast.setFillColor(sf::Color::Red);
     rayCast.setPosition(weapon.getPosition());
     rayCast.rotate(angle);
+    
+    weapon.getSprite()->setRotation(angle + 90);
     
 };
