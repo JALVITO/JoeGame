@@ -8,7 +8,6 @@
 
 #include <stdio.h>
 #include "Enemy.h"
-#include "Weapon.h"
 
 Enemy::Enemy(){};
 

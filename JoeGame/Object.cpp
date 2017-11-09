@@ -9,8 +9,6 @@
 #include <stdio.h>
 #include "Object.h"
 
-const float GRAVITY = 1;
-
 Object::Object(){};
 
 Object::Object(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture){

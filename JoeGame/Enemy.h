@@ -12,8 +12,7 @@
 #include "Entity.h"
 #include "Weapon.h"
 
-
-class Enemy : public Entity{
+class Enemy : public Entity {
 protected:
     Weapon weapon;
 public:

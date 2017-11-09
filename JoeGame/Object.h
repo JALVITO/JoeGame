@@ -29,6 +29,7 @@ using namespace sf;
 class Object{
 
 protected:
+    float GRAVITY = 1;
     Vector2f acceleration;
     Vector2f velocity;
     Vector2f position;
