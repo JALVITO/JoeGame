@@ -36,7 +36,6 @@ int main(int, char const**)
     
     vector<int> type = {1, 1, 1, 1};
     Entity player = Entity(1, type, Vector2f(32, 64), Vector2f(200, 450), &playerTexture, 100);
-    
     type = {0, 1, 1, 1};
     
     allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 550), &texture));
