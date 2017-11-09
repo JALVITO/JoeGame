@@ -9,27 +9,20 @@
 #include <stdio.h>
 #include "Object.h"
 
-const float GRAVITY = 1;
-
 Object::Object(){};
 
-Object::Object(double _density, vector<int> &_type, Vector2f _size, Texture* texture){
+Object::Object(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture){
     density = _density;
     type = _type;
     size = _size;
     acceleration = Vector2f();
     velocity = Vector2f();
-    position = Vector2f();
+    position = _position;
     mass = density / 100.0 * cbrt((size.x * size.y));
     theta = 0;
     sprite.setTexture(*texture);
     //sprite.setColor(Color(255, 255, 255, 255));
     sprite.setScale(size.x / 16.0, size.y / 16.0);
-    sprite.setPosition(position);
-}
-
-Object::Object(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture) : Object(_density, _type, _size, texture){
-    position = _position;
     sprite.setPosition(position);
 }
 
@@ -69,7 +62,7 @@ void Object::update(vector<Object> &colliders){
     
     if (velocity.y != 0)
         isGrounded = false;
-
+    
 }
 void Object::draw(RenderWindow* window){
     (*window).draw(sprite);
@@ -150,8 +143,16 @@ float Object::getVelocityY(){
     return velocity.y;
 }
 
-Sprite Object::getSprite(){
-    return sprite;
+Sprite* Object::getSprite(){
+    return &sprite;
+}
+
+Vector2f Object::getPosition(){
+    return position;
+}
+
+void Object::setPosition(Vector2f _position){
+    position = _position;
 }
 
 
