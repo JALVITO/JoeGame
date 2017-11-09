@@ -4,6 +4,8 @@
 // Here is a small helper for you! Have a look.
 #include "ResourcePath.hpp"
 #include "Entity.h"
+#include "Weapon.h"
+#include "Player.h"
 
 int main(int, char const**)
 {
@@ -34,9 +36,8 @@ int main(int, char const**)
     
     vector<Object> allObjects;
     
-    vector<int> type = {1, 1, 1, 1};
-    Entity player = Entity(1, type, Vector2f(32, 64), Vector2f(200, 450), &playerTexture, 100);
-    type = {0, 1, 1, 1};
+    vector<int> type = {0, 1, 1, 1};
+    Weapon weapon = Weapon(1, type, Vector2f(10,20), Vector2f(200,450), &playerTexture, 10, 20);
     
     allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 550), &texture));
     allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 150), &texture));
@@ -44,6 +45,15 @@ int main(int, char const**)
     allObjects.push_back(Object(1, type, Vector2f(64, 800), Vector2f(50, 0), &texture));
     
     allObjects.push_back(Object(1, type, Vector2f(48, 48), Vector2f(200, 435), &texture));
+    
+    type = {1, 1, 1, 1};
+    
+    //Weapon(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, double _firingRate, double _damage);
+    
+    //Player player = Player(1, type, Vector2f(32, 64), Vector2f(200, 450), &playerTexture, 100);
+    Player player = Player(1, type, Vector2f(32, 64), Vector2f(200, 450), &playerTexture, 100, 0, 0, &weapon);
+    
+    //float _jumpForce, float _moveForce, Weapon* _weapon
     
     //allObjects.at(4).setVelocity(Vector2f(0, -2));
     //allObjects.at(1).setVelocity(Vector2f(0, 2));

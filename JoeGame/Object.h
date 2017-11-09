@@ -56,6 +56,9 @@ public:
     //void setSprite(Sprite* sprite); TBI
     Sprite getSprite();
     bool isItGrounded();
+    Vector2f getPosition();
+    void setTheta(float _theta);
+    float getTheta();
     
 };
 
