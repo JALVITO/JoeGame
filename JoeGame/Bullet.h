@@ -18,7 +18,7 @@ public:
     Bullet();
     Bullet(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, double _damage);
     void update(vector<Object> &colliders);
-    void DealDamage();
+    void DealDamage(Object &other);
     void Destroy();
     bool collidesWith(Object &other);
 };

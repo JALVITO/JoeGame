@@ -29,27 +29,37 @@ void Bullet::update(vector<Object> &colliders){
     sprite.setPosition(position);
     for(int i = 0; i < colliders.size(); i++){
         if(collidesWith(colliders.at(i))){
+            cout << "Hola! funciona!" << endl;
             try{
-                DealDamage();
+                DealDamage(colliders.at(i));
                 Destroy();
             }catch(exception e){
                 Destroy();
             }
            
+        }else{
+            cout << "=(" << endl;
         }
     }
 }
 
 void Bullet::Destroy(){
-    
+
 }
 
-void Bullet::DealDamage(){
+void Bullet::DealDamage(Object &other){
     
 }
 
 bool Bullet::collidesWith(Object &other){
+    //punto = bullet.position
+    Rect<float> otherBounds = other.getSprite().getGlobalBounds();
     
+    if(getPosition().x > otherBounds.left && getPosition().x < otherBounds.width && getPosition().y > otherBounds.height && getPosition().y < otherBounds.top){
+        return true;
+    }
+    
+    return false;
 }
 
 

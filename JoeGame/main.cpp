@@ -6,6 +6,7 @@
 #include "Entity.h"
 #include "Weapon.h"
 #include "Player.h"
+#include "Bullet.h"
 
 int main(int, char const**)
 {
@@ -37,7 +38,7 @@ int main(int, char const**)
     vector<Object> allObjects;
     
     vector<int> type = {0, 1, 1, 1};
-    Weapon weapon = Weapon(1, type, Vector2f(10,20), Vector2f(200,450), &playerTexture, 10, 20);
+    Weapon weapon = Weapon(1, type, Vector2f(10,20), Vector2f(200,450), &playerTexture, 20);
     
     allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 550), &texture));
     allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 150), &texture));
@@ -46,13 +47,13 @@ int main(int, char const**)
     
     allObjects.push_back(Object(1, type, Vector2f(48, 48), Vector2f(200, 435), &texture));
     
-    type = {1, 1, 1, 1};
+    type = {0, 1, 1, 1};
     
     //Weapon(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, double _firingRate, double _damage);
     
     //Player player = Player(1, type, Vector2f(32, 64), Vector2f(200, 450), &playerTexture, 100);
     Player player = Player(1, type, Vector2f(32, 64), Vector2f(200, 450), &playerTexture, 100, 0, 0, &weapon);
-    
+    Bullet bullet = Bullet(1, type, Vector2f(100,100), Vector2f(300,400), &playerTexture, 5);
     //float _jumpForce, float _moveForce, Weapon* _weapon
     
     //allObjects.at(4).setVelocity(Vector2f(0, -2));
@@ -72,29 +73,30 @@ int main(int, char const**)
             }
             float fuck_copy_paste = 0.8;
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
-                player.addForce(Vector2f(-fuck_copy_paste, 0));
+                bullet.addForce(Vector2f(-fuck_copy_paste, 0));
             }
             
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
-                player.addForce(Vector2f(fuck_copy_paste, 0));
+                bullet.addForce(Vector2f(fuck_copy_paste, 0));
             }
             
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up) {
                 if(player.isItGrounded())
-                    player.addForce(Vector2f(0, -fuck_copy_paste * 2.5));
+                    bullet.addForce(Vector2f(0, -fuck_copy_paste * 2.5));
             }
             
             if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Left) {
-                player.addForce(Vector2f(fuck_copy_paste, 0));
+                bullet.addForce(Vector2f(fuck_copy_paste, 0));
             }
             
             if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Right) {
-                player.addForce(Vector2f(-fuck_copy_paste, 0));
+                bullet.addForce(Vector2f(-fuck_copy_paste, 0));
             }
         }
         
         // Update player physics
         player.update(allObjects);
+        bullet.update(allObjects);
         
         // Update Object physics
         for(int i = 0; i < allObjects.size(); i++){
@@ -111,7 +113,7 @@ int main(int, char const**)
         
         // Draw Player
         player.draw(&window);
-    
+        bullet.draw(&window);
         
         // Update the window
         window.display();

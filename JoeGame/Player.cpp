@@ -50,9 +50,6 @@ void Player::pointWeapon(RenderWindow* window){
     }
     
     weapon.setTheta(angle);
-    cout << angle << endl;
-    cout << "x: " << mousePos.x - weapon.getPosition().x << endl;
-    cout << "y: " << mousePos.y - weapon.getPosition().y << endl;
 
     
     rayCast = RectangleShape(Vector2f(5,1000));
