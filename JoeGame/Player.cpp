@@ -38,13 +38,15 @@ void Player::pointWeapon(RenderWindow* window){
     
     if (angle < 0){
         if ((mousePos.x - weapon.getPosition().x) < 0)
-            angle = 180 + angle;
+            angle = -angle;
         else
-            angle = 360 + angle;
+            angle = 180 - angle;
     }
     else{
         if ((mousePos.x - weapon.getPosition().x) < 0)
             angle = 180 - angle;
+        else
+            angle = -angle;
     }
     
     weapon.setTheta(angle);
