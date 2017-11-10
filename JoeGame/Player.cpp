@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "Player.h"
 #include <math.h>
+#include "Bullet.h"
 
 Player::Player(){};
 

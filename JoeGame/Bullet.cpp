@@ -7,18 +7,18 @@
 //
 
 #include <stdio.h>
-#include <typeinfo>
 
 #include "Bullet.h"
 
 Bullet::Bullet(){};
 
-Bullet::Bullet(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _damage) : Object(_density, _type, _size, _position, texture){
+Bullet::Bullet(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _damage, bool _isPlayer) : Object(_density, _type, _size, _position, texture){
     damage = _damage;
     isDestroyed = false;
+    isPlayer = _isPlayer;
 }
 
-void Bullet::update(vector<Object> &objectcol, vector<Entity> &entitycol){
+void Bullet::update(vector<Object> &objectcol, vector<Player> &playercol, vector<Enemy> &enemycol){
     // Add gravity force
     addForce(Vector2f(0, GRAVITY * mass), 0);
     // Add acceleration to velocity
@@ -34,12 +34,22 @@ void Bullet::update(vector<Object> &objectcol, vector<Entity> &entitycol){
         }
     }
 
-    for(int i = 0; i < entitycol.size(); i++){
-        if(collidesWith(entitycol.at(i))){
-            DealDamage(entitycol.at(i), damage);
-            Destroy();
+    if(!isPlayer){
+        for(int i = 0; i < playercol.size(); i++){
+            if(collidesWith(playercol.at(i))){
+                DealDamage(playercol.at(i), damage);
+                Destroy();
+            }
+        }
+    }else{
+        for(int i = 0; i < enemycol.size(); i++){
+            if(collidesWith(enemycol.at(i))){
+                DealDamage(enemycol.at(i), damage);
+                Destroy();
+            }
         }
     }
+    
 }
 
 

@@ -10,15 +10,18 @@
 #define Weapon_h
 
 #include "Object.h"
-#include "Bullet.h"
+
+class Bullet;
+
 
 class Weapon : public Object{
 protected:
     double firingRate, firingForce;
     Texture bulletTexture;
+    bool isPlayer;
 public:
     Weapon();
-    Weapon(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, double _firingRate, double _firingForce, Texture* _bulletTexture);
+    Weapon(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, double _firingRate, double _firingForce, Texture* _bulletTexture, bool _isPlayer);
     void fire(vector<Bullet> &bullets);
 };
 

@@ -11,7 +11,8 @@
 
 #include "Entity.h"
 #include "Weapon.h"
-#include "Bullet.h"
+
+class Bullet;
 
 class Player : public Entity{
 protected:

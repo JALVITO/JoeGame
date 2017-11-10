@@ -40,22 +40,20 @@ int main(int, char const**)
     
     vector<Object> allObjects;
     vector<Player> allPlayers;
-    vector<Entity> allEntities;
+    vector<Enemy> allEnemies;
     vector<Bullet> allBullets;
     
     vector<int> type = {1, 1, 1, 1};
     vector<int> type_NO_GRAV = {0, 1, 1, 1};
     
-    Weapon weapon = Weapon(1, type_NO_GRAV, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 2, &gunTexture);
-    
+    Weapon weapon = Weapon(1, type_NO_GRAV, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 2, &gunTexture, true);
 
     allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(1000, 64), Vector2f(-100, 550), &blockTexture));
     allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(1000, 64), Vector2f(-100, 150), &blockTexture));
     allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(64, 800), Vector2f(500, 0), &blockTexture));
     allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(64, 800), Vector2f(50, 0), &blockTexture));
     allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(48, 48), Vector2f(200, 435), &blockTexture));
-    allBullets.push_back(Bullet(1, type_NO_GRAV, Vector2f(8,8), Vector2f(300,300), &playerTexture, 5));
-    type = {1, 1, 1, 1};
+    
     allPlayers.push_back(Player(1, type, Vector2f(32, 64), Vector2f(200, 275), &playerTexture, 100, 0, 0, &weapon));
     
     // Start the game loop
@@ -102,7 +100,7 @@ int main(int, char const**)
                 allBullets.erase(allBullets.begin() + i);
                 continue;
             }
-            allBullets.at(i).update(allObjects, allEntities);
+            allBullets.at(i).update(allObjects, allPlayers, allEnemies);
         }
         
         // Update Player physics
