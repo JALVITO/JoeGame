@@ -15,7 +15,6 @@ int main(int, char const**)
     
     window.setFramerateLimit(60);
     window.setKeyRepeatEnabled(0);
-
     
     // Set the Icon
     sf::Image icon;
@@ -52,8 +51,16 @@ int main(int, char const**)
     allObjects.push_back(Object(1, type, Vector2f(64, 800), Vector2f(500, 0), &blockTexture));
     allObjects.push_back(Object(1, type, Vector2f(64, 800), Vector2f(50, 0), &blockTexture));
     allObjects.push_back(Object(1, type, Vector2f(48, 48), Vector2f(200, 435), &blockTexture));
+    type = {1, 1, 1, 1};
+
     allPlayers.push_back(Player(1, type, Vector2f(32, 64), Vector2f(200, 275), &playerTexture, 100, 0, 0, &weapon));
-    allBullets.push_back(Bullet(1, type, Vector2f(8,8), Vector2f(300,300), &playerTexture, 5));
+    type = {0, 1, 1, 1};
+
+    allBullets.push_back(Bullet(1, type, Vector2f(106,106), Vector2f(300,300), &playerTexture, 5));
+    allBullets.push_back(Bullet(1, type, Vector2f(16,16), Vector2f(200,300), &playerTexture, 5));
+    allBullets.push_back(Bullet(1, type, Vector2f(16,16), Vector2f(250,300), &playerTexture, 5));
+    allBullets.push_back(Bullet(1, type, Vector2f(16,16), Vector2f(350,300), &playerTexture, 5));
+    
     
     // Start the game loop
     while (window.isOpen())
