@@ -40,27 +40,23 @@ int main(int, char const**)
     
     vector<Object> allObjects;
     vector<Player> allPlayers;
+    vector<Entity> allEntities;
     vector<Bullet> allBullets;
+    
+    vector<int> type = {1, 1, 1, 1};
+    vector<int> type_NO_GRAV = {0, 1, 1, 1};
+    
+    Weapon weapon = Weapon(1, type_NO_GRAV, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 2, &gunTexture);
+    
 
-    vector<int> type = {0, 1, 1, 1};
-    
-    Weapon weapon = Weapon(1, type, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20);
-    
-    allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 550), &blockTexture));
-    allObjects.push_back(Object(1, type, Vector2f(1000, 64), Vector2f(-100, 150), &blockTexture));
-    allObjects.push_back(Object(1, type, Vector2f(64, 800), Vector2f(500, 0), &blockTexture));
-    allObjects.push_back(Object(1, type, Vector2f(64, 800), Vector2f(50, 0), &blockTexture));
-    allObjects.push_back(Object(1, type, Vector2f(48, 48), Vector2f(200, 435), &blockTexture));
+    allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(1000, 64), Vector2f(-100, 550), &blockTexture));
+    allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(1000, 64), Vector2f(-100, 150), &blockTexture));
+    allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(64, 800), Vector2f(500, 0), &blockTexture));
+    allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(64, 800), Vector2f(50, 0), &blockTexture));
+    allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(48, 48), Vector2f(200, 435), &blockTexture));
+    allBullets.push_back(Bullet(1, type_NO_GRAV, Vector2f(8,8), Vector2f(300,300), &playerTexture, 5));
     type = {1, 1, 1, 1};
-
     allPlayers.push_back(Player(1, type, Vector2f(32, 64), Vector2f(200, 275), &playerTexture, 100, 0, 0, &weapon));
-    type = {0, 1, 1, 1};
-
-    allBullets.push_back(Bullet(1, type, Vector2f(106,106), Vector2f(300,300), &playerTexture, 5));
-    allBullets.push_back(Bullet(1, type, Vector2f(16,16), Vector2f(200,300), &playerTexture, 5));
-    allBullets.push_back(Bullet(1, type, Vector2f(16,16), Vector2f(250,300), &playerTexture, 5));
-    allBullets.push_back(Bullet(1, type, Vector2f(16,16), Vector2f(350,300), &playerTexture, 5));
-    
     
     // Start the game loop
     while (window.isOpen())
@@ -94,15 +90,19 @@ int main(int, char const**)
             if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::D) {
                 allPlayers.at(0).addForce(Vector2f(-fuck_copy_paste, 0));
             }
+            
+            if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Button::Left) {
+                allPlayers.at(0).fireWeapon(allBullets);
+            }
         }
 
-        // Update Bullet physics
+        // Update Bullet physicss
         for(int i = 0; i < allBullets.size(); i++){
             if (allBullets.at(i).isItDestroyed()){
                 allBullets.erase(allBullets.begin() + i);
                 continue;
             }
-            allBullets.at(i).update(allObjects,allPlayers);
+            allBullets.at(i).update(allObjects, allEntities);
         }
         
         // Update Player physics
