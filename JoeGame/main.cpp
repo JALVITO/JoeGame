@@ -25,12 +25,16 @@ int main(int, char const**)
     
     
     // Load a sprite to display
-    sf::Texture playerTexture, blockTexture, gunTexture;
+    sf::Texture playerTexture, blockTexture, gunTexture, bulletTexture;
     if (!playerTexture.loadFromFile(resourcePath() + "pacman.png")) {
         return EXIT_FAILURE;
     }
     
     if (!gunTexture.loadFromFile(resourcePath() + "gun.png")) {
+        return EXIT_FAILURE;
+    }
+    
+    if (!bulletTexture.loadFromFile(resourcePath() + "bullet.png")) {
         return EXIT_FAILURE;
     }
     
@@ -46,7 +50,7 @@ int main(int, char const**)
     vector<int> type = {1, 1, 1, 1};
     vector<int> type_NO_GRAV = {0, 1, 1, 1};
     
-    Weapon weapon = Weapon(1, type_NO_GRAV, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 2, &gunTexture, true);
+    Weapon weapon = Weapon(1, type_NO_GRAV, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 5, &bulletTexture, true);
 
     allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(1000, 64), Vector2f(-100, 550), &blockTexture));
     allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(1000, 64), Vector2f(-100, 150), &blockTexture));
