@@ -7,6 +7,7 @@
 #include "Weapon.h"
 #include "Player.h"
 #include "Bullet.h"
+#include "Enemy.h"
 
 int main(int, char const**)
 {
@@ -46,7 +47,7 @@ int main(int, char const**)
     vector<int> type = {1, 1, 1, 1};
     vector<int> type_NO_GRAV = {0, 1, 1, 1};
     
-    Weapon weapon = Weapon(1, type_NO_GRAV, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 2, &gunTexture, true);
+    Weapon weapon = Weapon(1, type_NO_GRAV, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 5, &gunTexture, true);
 
     allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(1000, 64), Vector2f(-100, 550), &blockTexture));
     allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(1000, 64), Vector2f(-100, 150), &blockTexture));
@@ -55,6 +56,9 @@ int main(int, char const**)
     allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(48, 48), Vector2f(200, 435), &blockTexture));
     
     allPlayers.push_back(Player(1, type, Vector2f(32, 64), Vector2f(200, 275), &playerTexture, 100, 0, 0, &weapon));
+    
+    allEnemies.push_back(Enemy(1, type, Vector2f(32,64), Vector2f(300,275), &playerTexture, 100, &weapon));
+    
     
     // Start the game loop
     while (window.isOpen())
@@ -108,6 +112,15 @@ int main(int, char const**)
             allPlayers.at(i).update(allObjects);
         }
         
+        // Update Enemy physics
+        for(int i = 0; i < allEnemies.size(); i++){
+            if (allEnemies.at(i).isItDestroyed()){
+                allEnemies.erase(allEnemies.begin() + i);
+                continue;
+            }
+            allEnemies.at(i).update(allObjects);
+        }
+        
         // Update Object physics
         for(int i = 0; i < allObjects.size(); i++){
             allObjects.at(i).update();
@@ -124,6 +137,11 @@ int main(int, char const**)
         // Draw Players
         for(int i = 0; i < allPlayers.size(); i++){
             allPlayers.at(i).draw(&window);
+        }
+        
+        // Draw Enemies
+        for(int i = 0; i < allEnemies.size(); i++){
+            allEnemies.at(i).draw(&window);
         }
         
         // Draw Bullets
