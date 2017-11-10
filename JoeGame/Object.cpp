@@ -21,6 +21,7 @@ Object::Object(double _density, vector<int> &_type, Vector2f _size, Vector2f _po
     mass = density / 100.0 * cbrt((size.x * size.y));
     theta = 0;
     sprite.setTexture(*texture);
+    isDestroyed = false;
     //sprite.setColor(Color(255, 255, 255, 255));
     sprite.setScale(size.x / 16.0, size.y / 16.0);
     sprite.setPosition(position);
