@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Bullet.h"
 #include "Enemy.h"
+#include "Magnet.h"
 
 int main(int, char const**)
 {
@@ -26,7 +27,7 @@ int main(int, char const**)
     
     
     // Load a sprite to display
-    sf::Texture playerTexture, blockTexture, gunTexture, bulletTexture;
+    sf::Texture playerTexture, blockTexture, magnetTexture, gunTexture, bulletTexture;
     if (!playerTexture.loadFromFile(resourcePath() + "pacman.png")) {
         return EXIT_FAILURE;
     }
@@ -43,25 +44,34 @@ int main(int, char const**)
         return EXIT_FAILURE;
     }
     
+    if (!magnetTexture.loadFromFile(resourcePath() + "magnet.png")) {
+        return EXIT_FAILURE;
+    }
+    
     vector<Object> allObjects;
     vector<Player> allPlayers;
     vector<Enemy> allEnemies;
     vector<Bullet> allBullets;
+    vector<Magnet> allMagnets;
     
     vector<int> type = {1, 1, 1, 1};
-    vector<int> type_NO_GRAV = {0, 1, 1, 1};
+    vector<int> type_NG = {0, 1, 1, 1};
+    vector<int> type_NM = {1, 0, 1, 1};
+    vector<int> type_NG_NM = {0, 0, 1, 1};
     
-    Weapon weapon = Weapon(1, type_NO_GRAV, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 5, &bulletTexture, true);
+    Weapon weapon = Weapon(1, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 0.3, &bulletTexture, true);
 
-    allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(1000, 64), Vector2f(-100, 550), &blockTexture));
-    allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(1000, 64), Vector2f(-100, 150), &blockTexture));
-    allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(64, 800), Vector2f(500, 0), &blockTexture));
-    allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(64, 800), Vector2f(50, 0), &blockTexture));
-    allObjects.push_back(Object(1, type_NO_GRAV, Vector2f(48, 48), Vector2f(200, 435), &blockTexture));
+    allObjects.push_back(Object(5, type_NG_NM, Vector2f(1000, 64), Vector2f(-100, 550), &blockTexture));
+    allObjects.push_back(Object(5, type_NG_NM, Vector2f(1000, 64), Vector2f(-100, 150), &blockTexture));
+    allObjects.push_back(Object(5, type_NG_NM, Vector2f(64, 800), Vector2f(500, 0), &blockTexture));
+    allObjects.push_back(Object(5, type_NG_NM, Vector2f(64, 800), Vector2f(50, 0), &blockTexture));
+    allPlayers.push_back(Player(1, type_NG, Vector2f(32, 64), Vector2f(150, 275), &playerTexture, 100, 0, 0, &weapon));
     
-    allPlayers.push_back(Player(1, type, Vector2f(32, 64), Vector2f(200, 275), &playerTexture, 100, 0, 0, &weapon));
+    allEnemies.push_back(Enemy(1, type_NG, Vector2f(32,64), Vector2f(200,225), &playerTexture, 100, &weapon));
     
-    allEnemies.push_back(Enemy(1, type, Vector2f(32,64), Vector2f(300,275), &playerTexture, 100, &weapon));
+    allMagnets.push_back((Magnet(1, type_NG, Vector2f(50, 50), Vector2f(300, 350), &magnetTexture, 50, 0.3)));
+    
+    //allMagnets.push_back((Magnet(1, type_NG, Vector2f(50, 50), Vector2f(300, 450), &magnetTexture, 50, 0.3)));
     
     
     // Start the game loop
@@ -102,6 +112,12 @@ int main(int, char const**)
             }
         }
 
+        
+        // Update Magnet physics
+        for(int i = 0; i < allMagnets.size(); i++){
+            allMagnets.at(i).update(allObjects, allBullets, allPlayers, allEnemies);
+        }
+        
         // Update Bullet physicss
         for(int i = 0; i < allBullets.size(); i++){
             if (allBullets.at(i).isItDestroyed()){
@@ -122,6 +138,11 @@ int main(int, char const**)
                 allEnemies.erase(allEnemies.begin() + i);
                 continue;
             }
+            /*/
+            if(allEnemies.at(i).isItGrounded()){
+                allEnemies.at(i).addForce(Vector2f(0, -1.5));
+            }
+            /*/
             allEnemies.at(i).update(allObjects);
         }
         
@@ -133,6 +154,12 @@ int main(int, char const**)
         // Clear screen
         window.clear(sf::Color::White);
 
+        
+        // Draw Magnets
+        for(int i = 0; i < allMagnets.size(); i++){
+            allMagnets.at(i).draw(&window);
+        }
+        
         // Draw all objects
         for(int i = 0; i < allObjects.size(); i++){
             allObjects.at(i).draw(&window);
