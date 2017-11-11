@@ -35,13 +35,13 @@ protected:
     Vector2f position;
     Vector2f size;
     vector<int> type;
-    double density, mass, theta;
+    double mass, theta;
     bool isGrounded;
     Sprite sprite;
     bool isDestroyed;
 public:
     Object();
-    Object(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture);
+    Object(double _mass, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture);
     void update();
     void update(vector<Object> &colliders);
     void draw(RenderWindow* window);

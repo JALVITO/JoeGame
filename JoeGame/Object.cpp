@@ -11,14 +11,13 @@
 
 Object::Object(){};
 
-Object::Object(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture){
-    density = _density;
+Object::Object(double _mass, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture){
     type = _type;
     size = _size;
     acceleration = Vector2f();
     velocity = Vector2f();
     position = _position;
-    mass = density / 100.0 * cbrt((size.x * size.y));
+    mass = _mass;
     theta = 0;
     sprite.setTexture(*texture);
     isDestroyed = false;
@@ -94,6 +93,8 @@ void Object::underlap(Rect<float> &otherBounds, int axis){
         if(velocity.x < 0 ){
             position.x += otherBounds.left + otherBounds.width - position.x;
         }
+        
+        velocity = Vector2f(0, velocity.y);
     }
     
     else{

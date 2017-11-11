@@ -16,7 +16,7 @@ int main(int, char const**)
     sf::RenderWindow window(sf::VideoMode(900, 600), "SFML window", sf::Style::Close);
     
     window.setFramerateLimit(60);
-    window.setKeyRepeatEnabled(0);
+    window.setKeyRepeatEnabled(1);
     
     // Set the Icon
     sf::Image icon;
@@ -48,6 +48,9 @@ int main(int, char const**)
         return EXIT_FAILURE;
     }
     
+    int MOUSE_INPUTS[3] = {0, 0, 0}; // LEFT, MIDDLE, RIGHT
+    int KEY_INPUTS[5] = {0, 0, 0, 0, 0}; // W, A, S, D, SPACEBAR
+    
     vector<Object> allObjects;
     vector<Player> allPlayers;
     vector<Enemy> allEnemies;
@@ -59,7 +62,7 @@ int main(int, char const**)
     vector<int> type_NM = {1, 0, 1, 1};
     vector<int> type_NG_NM = {0, 0, 1, 1};
     
-    Weapon weapon = Weapon(1, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 0.3, &bulletTexture, true);
+    Weapon weapon = Weapon(1, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 1, &bulletTexture, true);
 
     allObjects.push_back(Object(5, type_NG_NM, Vector2f(1000, 64), Vector2f(-100, 550), &blockTexture));
     allObjects.push_back(Object(5, type_NG_NM, Vector2f(1000, 64), Vector2f(-100, 150), &blockTexture));
@@ -85,13 +88,15 @@ int main(int, char const**)
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
-            float fuck_copy_paste = 0.8;
+            float fuck_copy_paste = 10;
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::A) {
-                allPlayers.at(0).addForce(Vector2f(-fuck_copy_paste, 0));
+                KEY_INPUTS[1] = 1;
+                //allPlayers.at(0).setSelfVelocity(Vector2f(-fuck_copy_paste, 0));
             }
             
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::D) {
-                allPlayers.at(0).addForce(Vector2f(fuck_copy_paste, 0));
+                KEY_INPUTS[3] = 1;
+                //allPlayers.at(0).setSelfVelocity(Vector2f(fuck_copy_paste, 0));
             }
             
             if((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::W || event.key.code == sf::Keyboard::Space)) {
@@ -100,18 +105,37 @@ int main(int, char const**)
             }
             
             if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::A) {
-                allPlayers.at(0).addForce(Vector2f(fuck_copy_paste, 0));
+                KEY_INPUTS[1] = 0;
+                //allPlayers.at(0).setSelfVelocity(Vector2f(0, allPlayers.at(0).getSelfVelocity().y));
             }
             
             if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::D) {
-                allPlayers.at(0).addForce(Vector2f(-fuck_copy_paste, 0));
+                KEY_INPUTS[3] = 0;
+                //allPlayers.at(0).setSelfVelocity(Vector2f(0, allPlayers.at(0).getSelfVelocity().y));
             }
             
             if(event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Button::Left) {
-                allPlayers.at(0).fireWeapon(allBullets);
+                MOUSE_INPUTS[0] = 1;
+                //allPlayers.at(0).fireWeapon(allBullets);
+            }
+            
+            if(event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Button::Left) {
+                MOUSE_INPUTS[0] = 0;
+                //allPlayers.at(0).fireWeapon(allBullets);
             }
         }
-
+        
+        if(MOUSE_INPUTS[0])
+            allPlayers.at(0).fireWeapon(allBullets);
+        
+        if(KEY_INPUTS[3])
+            allPlayers.at(0).setSelfVelocity(Vector2f(5, allPlayers.at(0).getSelfVelocity().y));
+        
+        if(KEY_INPUTS[1])
+            allPlayers.at(0).setSelfVelocity(Vector2f(-5, allPlayers.at(0).getSelfVelocity().y));
+        
+        if(!KEY_INPUTS[1] && !KEY_INPUTS[3])
+            allPlayers.at(0).setSelfVelocity(Vector2f(0, allPlayers.at(0).getSelfVelocity().y));
         
         // Update Magnet physics
         for(int i = 0; i < allMagnets.size(); i++){

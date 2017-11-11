@@ -17,6 +17,7 @@ Player::Player(double _density, vector<int> &_type, Vector2f _size, Vector2f _po
     jumpForce = _jumpForce;
     moveForce = _moveForce;
     weapon = *_weapon;
+    selfVelocity = Vector2f();
 }
 
 void Player::update(vector<Object> &colliders){
@@ -69,3 +70,5 @@ void Player::fireWeapon(vector<Bullet> &bullets){
 Weapon* Player::getWeapon(){
     return &weapon;
 }
+
+
