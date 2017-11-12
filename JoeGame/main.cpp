@@ -79,7 +79,7 @@ int main(int, char const**)
     vector<int> type_NM = {1, 0, 1, 1};
     vector<int> type_NG_NM = {0, 0, 1, 1};
     
-    Weapon weapon = Weapon(1, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 3, &bulletTexture, true, type_NG, 0.75, 2, Vector2f(32, 32));
+    Weapon weapon = Weapon(1, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 3, &bulletTexture, true, type_NG, 0.75, 2, Vector2f(64, 64));
     
     player = new Player(1, type, Vector2f(50, 50), Vector2f(150, 500), &playerTexture, 100, 10, 3, &weapon);
 

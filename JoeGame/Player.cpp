@@ -63,6 +63,9 @@ void Player::update(vector<Object> &objectCol, vector<Magnet> &magnetCol){
             velocity.x = 0;
     }
     
+    if (velocity.y != 0)
+        isGrounded = false;
+    
     if(hp <= 0)
         die();
     weapon.setPosition(getPosition());
