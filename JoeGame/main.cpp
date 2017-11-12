@@ -19,7 +19,8 @@ int main(int, char const**)
     sf::RenderWindow window(sf::VideoMode(900, 600), "SFML window", sf::Style::Close);
     
     window.setFramerateLimit(60);
-    window.setKeyRepeatEnabled(1);
+    window.setKeyRepeatEnabled(0);
+    window.setVerticalSyncEnabled(true);
     
     // Set the Icon
     sf::Image icon;
@@ -67,8 +68,8 @@ int main(int, char const**)
     int MOUSE_INPUTS[3] = {0, 0, 0}; // LEFT, MIDDLE, RIGHT
     int KEY_INPUTS[5] = {0, 0, 0, 0, 0}; // W, A, S, D, SPACEBAR
     
+    Player* player;
     vector<Object> allObjects;
-    vector<Player> allPlayers;
     vector<Enemy> allEnemies;
     vector<Bullet> allBullets;
     vector<Magnet> allMagnets;
@@ -78,19 +79,20 @@ int main(int, char const**)
     vector<int> type_NM = {1, 0, 1, 1};
     vector<int> type_NG_NM = {0, 0, 1, 1};
     
-    Weapon weapon = Weapon(0.001, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 15, &bulletTexture, true, type_NG);
+    Weapon weapon = Weapon(1, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 3, &bulletTexture, true, type_NG, 0.75, 2, Vector2f(32, 32));
+    
+    player = new Player(1, type, Vector2f(50, 50), Vector2f(150, 500), &playerTexture, 100, 10, 3, &weapon);
 
     allObjects.push_back(Object(5, type_NG_NM, Vector2f(1000, 64), Vector2f(-100, 555), &blockTexture));
     allObjects.push_back(Object(5, type_NG_NM, Vector2f(1000, 64), Vector2f(-100, 150), &blockTexture));
     allObjects.push_back(Object(5, type_NG_NM, Vector2f(64, 800), Vector2f(500, 0), &blockTexture));
     allObjects.push_back(Object(5, type_NG_NM, Vector2f(64, 800), Vector2f(50, 0), &blockTexture));
-    allPlayers.push_back(Player(0.1, type, Vector2f(50, 50), Vector2f(300, 400), &playerTexture, 100, 0, 0, &weapon));
     
-    allEnemies.push_back(Enemy(0.1, type, Vector2f(32,64), Vector2f(200,225), &playerTexture, 100, &weapon));
+    //allEnemies.push_back(Enemy(0.1, type, Vector2f(32,64), Vector2f(200,225), &playerTexture, 100, &weapon));
     
-    allMagnets.push_back((Magnet(1, type_NG, Vector2f(50, 50), Vector2f(250, 250), &repellerTexture, 50, 800)));
+    allMagnets.push_back((Magnet(1, type_NG, Vector2f(64, 64), Vector2f(250, 250), &repellerTexture, 50, 800)));
     
-    allMagnets.push_back((Magnet(1, type_NG, Vector2f(50, 50), Vector2f(250, 450), &attractorTexture, 50, -800)));
+    allMagnets.push_back((Magnet(1, type_NG, Vector2f(32, 32), Vector2f(350, 355), &attractorTexture, 50, -800)));
     
     GUI_Object guiobj = GUI_Object(Vector2f(16,16), Vector2f(200,200), &guiTexture);
     
@@ -112,7 +114,6 @@ int main(int, char const**)
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
-            float fuck_copy_paste = 5;
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::A) {
                 KEY_INPUTS[1] = 1;
                 //allPlayers.at(0).setSelfVelocity(Vector2f(-fuck_copy_paste, 0));
@@ -124,8 +125,8 @@ int main(int, char const**)
             }
             
             if((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::W || event.key.code == sf::Keyboard::Space)) {
-                if(allPlayers.at(0).isItGrounded())
-                    allPlayers.at(0).addForce(Vector2f(0, -fuck_copy_paste));
+                if(player->isItGrounded())
+                    player->addForce(Vector2f(0, -player->getJumpForce()));
             }
             
             if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::A) {
@@ -150,16 +151,16 @@ int main(int, char const**)
         }
         
         if(MOUSE_INPUTS[0])
-            allPlayers.at(0).fireWeapon(allBullets);
+            player->fireWeapon(allBullets);
         
         if(KEY_INPUTS[3])
-            allPlayers.at(0).setSelfVelocity(Vector2f(5, allPlayers.at(0).getSelfVelocity().y));
+            player->setSelfVelocity(Vector2f(player->getMoveForce(), player->getSelfVelocity().y));
         
         if(KEY_INPUTS[1])
-            allPlayers.at(0).setSelfVelocity(Vector2f(-5, allPlayers.at(0).getSelfVelocity().y));
+           player->setSelfVelocity(Vector2f(-player->getMoveForce(), player->getSelfVelocity().y));
         
         if(!KEY_INPUTS[1] && !KEY_INPUTS[3])
-            allPlayers.at(0).setSelfVelocity(Vector2f(0, allPlayers.at(0).getSelfVelocity().y));
+            player->setSelfVelocity(Vector2f(0, player->getSelfVelocity().y));
         
         // Update Magnet physics
         for(int i = 0; i < allMagnets.size(); i++){
@@ -167,7 +168,7 @@ int main(int, char const**)
                 allMagnets.erase(allMagnets.begin() + i);
                 continue;
             }
-            allMagnets.at(i).update(allObjects, allBullets, allPlayers, allEnemies);
+            allMagnets.at(i).update(allObjects, allBullets, player, allEnemies);
         }
         
         // Update Bullet physicss
@@ -176,13 +177,12 @@ int main(int, char const**)
                 allBullets.erase(allBullets.begin() + i);
                 continue;
             }
-            allBullets.at(i).update(allObjects, allPlayers, allEnemies, allMagnets);
+            allBullets.at(i).update(allObjects, player, allEnemies, allMagnets);
         }
         
         // Update Player physics
-        for(int i = 0; i < allPlayers.size(); i++){
-            allPlayers.at(i).update(allObjects, allMagnets);
-        }
+        player->update(allObjects, allMagnets);
+        
         
         // Update Enemy physics
         for(int i = 0; i < allEnemies.size(); i++){
@@ -218,9 +218,8 @@ int main(int, char const**)
         }
         
         // Draw Players
-        for(int i = 0; i < allPlayers.size(); i++){
-            allPlayers.at(i).draw(&window);
-        }
+        player->draw(&window);
+        
         
         // Draw Enemies
         for(int i = 0; i < allEnemies.size(); i++){

@@ -67,10 +67,16 @@ void Object::update(vector<Object> &colliders){
     }
     
     // Add friction to velocity
-    if(velocity.x > 0)
-        velocity.x -= FRICTION;
-    else if(velocity.x < 0)
-        velocity.x += FRICTION;
+    if(velocity.x > 0){
+        velocity.x -= velocity.x * FRICTION;
+        if(velocity.x < 0)
+            velocity.x = 0;
+    }
+    else if(velocity.x < 0){
+        velocity.x += -velocity.x * FRICTION;
+        if(velocity.x > 0)
+            velocity.x = 0;
+    }
     
     if (velocity.y != 0)
         isGrounded = false;
@@ -123,7 +129,6 @@ void Object::underlap(Rect<float> &otherBounds, int axis){
     }
     
     sprite.setPosition(position);
-    //acceleration = Vector2f(0, 0);
     
 }
 

@@ -34,7 +34,7 @@ void Magnet::excertForce(Object *other){
     
 }
 
-void Magnet::update(vector<Object> &objectCol, vector<Bullet>  &bulletCol, vector<Player> &playerCol, vector<Enemy> &enemyCol){
+void Magnet::update(vector<Object> &objectCol, vector<Bullet>  &bulletCol, Player* playerCol, vector<Enemy> &enemyCol){
     for(int i = 0; i < objectCol.size(); i++){
         excertForce(&objectCol.at(i));
     }
@@ -43,9 +43,7 @@ void Magnet::update(vector<Object> &objectCol, vector<Bullet>  &bulletCol, vecto
         excertForce(&bulletCol.at(i));
     }
     
-    for(int i = 0; i < playerCol.size(); i++){
-        excertForce(&playerCol.at(i));
-    }
+    excertForce(playerCol);
     
     for(int i = 0; i < enemyCol.size(); i++){
         excertForce(&enemyCol.at(i));

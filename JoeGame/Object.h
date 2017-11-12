@@ -29,8 +29,8 @@ using namespace sf;
 class Object{
 
 protected:
-    float GRAVITY = 0.1;
-    float FRICTION = 0.01;
+    float GRAVITY = 0.75;
+    float FRICTION = 0.05;
     Vector2f acceleration;
     Vector2f velocity;
     Vector2f position;

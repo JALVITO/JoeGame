@@ -31,6 +31,8 @@ public:
     void draw(RenderWindow* window);
     void pointWeapon(RenderWindow* window);
     void fireWeapon(vector<Bullet> &bullets);
+    float getJumpForce();
+    float getMoveForce();
     Weapon* getWeapon();
     
 };

@@ -20,7 +20,6 @@ Entity::Entity(double _mass, vector<int> &_type, Vector2f _size, Vector2f _posit
 }
 
 void Entity::die(){
-    cout << "endl" << endl;
     Destroy();
 }
 
@@ -47,10 +46,16 @@ void Entity::update(vector<Object> &colliders){
     }
     
     // Add friction to velocity
-    if(velocity.x > 0)
-        velocity.x -= FRICTION;
-    else if(velocity.x < 0)
-        velocity.x += FRICTION;
+    if(velocity.x > 0){
+        velocity.x -= velocity.x * FRICTION;
+        if(velocity.x < 0)
+            velocity.x = 0;
+    }
+    else if(velocity.x < 0){
+        velocity.x += -velocity.x * FRICTION;
+        if(velocity.x > 0)
+            velocity.x = 0;
+    }
     
     if (velocity.y != 0)
         isGrounded = false;
@@ -62,9 +67,6 @@ void Entity::update(vector<Object> &colliders){
 bool Entity::collidesWith(Object &other, int axis){
     Rect<float> ownBounds = sprite.getGlobalBounds();
     Rect<float> otherBounds = other.getSprite()->getGlobalBounds();
-    
-    //cout << "top: " << ownBounds.top << endl;
-    //cout << "bottom: " << otherBounds.top + otherBounds.height << endl;
     
     if(ownBounds.left + ownBounds.width > otherBounds.left)
         if(ownBounds.left < otherBounds.left + otherBounds.width)
@@ -105,8 +107,6 @@ void Entity::underlap(Rect<float> &otherBounds, int axis){
     }
     
     sprite.setPosition(position);
-    //acceleration = Vector2f(0, 0);
-    
 }
 
 bool Entity::isItGrounded(){
@@ -115,7 +115,6 @@ bool Entity::isItGrounded(){
 
 void Entity::recieveDamage(int _damage){
     hp -= _damage;
-    cout << hp << endl;
 }
 
 void Entity::setSelfVelocity(Vector2f _selfVelocity){
