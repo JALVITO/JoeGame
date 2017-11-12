@@ -14,7 +14,7 @@
 
 Player::Player(){};
 
-Player::Player(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp, float _jumpForce, float _moveForce, Weapon* _weapon) : Entity(_density, _type, _size, _position, texture, _maxHp){
+Player::Player(double _mass, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp, float _jumpForce, float _moveForce, Weapon* _weapon) : Entity(_mass, _type, _size, _position, texture, _maxHp){
     jumpForce = _jumpForce;
     moveForce = _moveForce;
     weapon = *_weapon;

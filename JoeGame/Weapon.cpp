@@ -12,7 +12,7 @@
 
 Weapon::Weapon(){};
 
-Weapon::Weapon(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, double _firingRate, double _firingForce, Texture* _bulletTexture, bool _isPlayer, vector<int>& _bulletType) : Object(_density, _type, _size, _position, texture){
+Weapon::Weapon(double _mass, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, double _firingRate, double _firingForce, Texture* _bulletTexture, bool _isPlayer, vector<int>& _bulletType) : Object(_mass, _type, _size, _position, texture){
     firingRate = _firingRate;
     firingForce = _firingForce;
     bulletTexture = *_bulletTexture;

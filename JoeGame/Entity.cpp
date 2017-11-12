@@ -11,7 +11,7 @@
 
 Entity::Entity(){};
 
-Entity::Entity(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp) : Object(_density, _type, _size, _position, texture){
+Entity::Entity(double _mass, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp) : Object(_mass, _type, _size, _position, texture){
     
     maxHp = _maxHp;
     hp = maxHp;

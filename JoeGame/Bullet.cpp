@@ -13,7 +13,7 @@
 
 Bullet::Bullet(){};
 
-Bullet::Bullet(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _damage, bool _isPlayer) : Object(_density, _type, _size, _position, texture){
+Bullet::Bullet(double _mass, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _damage, bool _isPlayer) : Object(_mass, _type, _size, _position, texture){
     damage = _damage;
     isDestroyed = false;
     isPlayer = _isPlayer;

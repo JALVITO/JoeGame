@@ -17,7 +17,7 @@ protected:
     Vector2f selfVelocity;
 public:
     Entity();
-    Entity(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp);
+    Entity(double _mass, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp);
     void die();
     void update(vector<Object> &colliders);
     bool isItGrounded();
