@@ -52,10 +52,16 @@ void Player::update(vector<Object> &objectCol, vector<Magnet> &magnetCol){
     }
     
     // Add friction to velocity
-    if(velocity.x > 0)
-        velocity.x -= FRICTION;
-    else if(velocity.x < 0)
-        velocity.x += FRICTION;
+    if(velocity.x > 0){
+        velocity.x -= velocity.x * FRICTION;
+        if(velocity.x < 0)
+            velocity.x = 0;
+    }
+    else if(velocity.x < 0){
+        velocity.x += -velocity.x * FRICTION;
+        if(velocity.x > 0)
+            velocity.x = 0;
+    }
     
     if (velocity.y != 0)
         isGrounded = false;
@@ -87,6 +93,13 @@ void Player::pointWeapon(RenderWindow* window){
     weapon.getSprite()->setRotation(angle + 90);
     
 };
+
+float Player::getJumpForce(){
+    return jumpForce;
+}
+float Player::getMoveForce(){
+    return moveForce;
+}
 
 void Player::fireWeapon(vector<Bullet> &bullets){
     weapon.fire(bullets);

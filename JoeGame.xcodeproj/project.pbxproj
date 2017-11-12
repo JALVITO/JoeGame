@@ -10,6 +10,11 @@
 		0A5D0E011FB6172800E863A0 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A5D0E001FB6172800E863A0 /* bullet.png */; };
 		0A5D0E041FB6266D00E863A0 /* Magnet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D0E031FB6266D00E863A0 /* Magnet.cpp */; };
 		0AD1BCCA1FAEF75300FAD766 /* pacman.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AD1BCC91FAEF75300FAD766 /* pacman.png */; };
+		0AE1C4711FB7F44400A8632B /* GUI_Text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1C46C1FB7F44300A8632B /* GUI_Text.cpp */; };
+		0AE1C4721FB7F44400A8632B /* GUI_Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1C46D1FB7F44300A8632B /* GUI_Button.cpp */; };
+		0AE1C4731FB7F44400A8632B /* GUI_Object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1C46F1FB7F44300A8632B /* GUI_Object.cpp */; };
+		0AE1C4761FB7F4AB00A8632B /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE1C4741FB7F4AB00A8632B /* 2.png */; };
+		0AE1C4771FB7F4AB00A8632B /* gui.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE1C4751FB7F4AB00A8632B /* gui.png */; };
 		3F216EA31FB3E88C00AEF021 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F216EA11FB3E88C00AEF021 /* Bullet.cpp */; };
 		3F52B7771FB292C900BFDE4E /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F52B7761FB292C900BFDE4E /* Enemy.cpp */; };
 		3F52B77B1FB2AC4300BFDE4E /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F52B77A1FB2AC4300BFDE4E /* Weapon.cpp */; };
@@ -31,6 +36,14 @@
 		0A5D0E021FB620D900E863A0 /* Magnet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Magnet.h; sourceTree = "<group>"; };
 		0A5D0E031FB6266D00E863A0 /* Magnet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Magnet.cpp; sourceTree = "<group>"; };
 		0AD1BCC91FAEF75300FAD766 /* pacman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pacman.png; sourceTree = "<group>"; };
+		0AE1C46B1FB7F44300A8632B /* GUI_Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUI_Object.h; sourceTree = "<group>"; };
+		0AE1C46C1FB7F44300A8632B /* GUI_Text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUI_Text.cpp; sourceTree = "<group>"; };
+		0AE1C46D1FB7F44300A8632B /* GUI_Button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUI_Button.cpp; sourceTree = "<group>"; };
+		0AE1C46E1FB7F44300A8632B /* GUI_Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUI_Button.h; sourceTree = "<group>"; };
+		0AE1C46F1FB7F44300A8632B /* GUI_Object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUI_Object.cpp; sourceTree = "<group>"; };
+		0AE1C4701FB7F44300A8632B /* GUI_Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUI_Text.h; sourceTree = "<group>"; };
+		0AE1C4741FB7F4AB00A8632B /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		0AE1C4751FB7F4AB00A8632B /* gui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gui.png; sourceTree = "<group>"; };
 		3F216EA01FB3E88C00AEF021 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
 		3F216EA11FB3E88C00AEF021 /* Bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
 		3F52B7761FB292C900BFDE4E /* Enemy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
@@ -103,6 +116,12 @@
 				3F52B77A1FB2AC4300BFDE4E /* Weapon.cpp */,
 				0A5D0E021FB620D900E863A0 /* Magnet.h */,
 				0A5D0E031FB6266D00E863A0 /* Magnet.cpp */,
+				0AE1C46E1FB7F44300A8632B /* GUI_Button.h */,
+				0AE1C46D1FB7F44300A8632B /* GUI_Button.cpp */,
+				0AE1C46B1FB7F44300A8632B /* GUI_Object.h */,
+				0AE1C46F1FB7F44300A8632B /* GUI_Object.cpp */,
+				0AE1C4701FB7F44300A8632B /* GUI_Text.h */,
+				0AE1C46C1FB7F44300A8632B /* GUI_Text.cpp */,
 				DB1F92AA1FAE38DD002BA52D /* Resources */,
 				DB1F92A31FAE38DD002BA52D /* Supporting Files */,
 			);
@@ -125,6 +144,8 @@
 				DB16FA691FB7AE620032DE8D /* attractor.png */,
 				DB16FA681FB7AE620032DE8D /* repeller.png */,
 				DB6B98A41FB3E943000EA66A /* gun.png */,
+				0AE1C4741FB7F4AB00A8632B /* 2.png */,
+				0AE1C4751FB7F4AB00A8632B /* gui.png */,
 				DB1F92BB1FAE4EC7002BA52D /* block.png */,
 				DB1F92AF1FAE38DD002BA52D /* sansation.ttf */,
 				DB1F92B11FAE38DD002BA52D /* icon.png */,
@@ -195,7 +216,9 @@
 				DB16FA6A1FB7AE620032DE8D /* repeller.png in Resources */,
 				DB1F92B21FAE38DD002BA52D /* icon.png in Resources */,
 				DB1F92B01FAE38DD002BA52D /* sansation.ttf in Resources */,
+				0AE1C4771FB7F4AB00A8632B /* gui.png in Resources */,
 				0AD1BCCA1FAEF75300FAD766 /* pacman.png in Resources */,
+				0AE1C4761FB7F4AB00A8632B /* 2.png in Resources */,
 				DB1F92BC1FAE4EC7002BA52D /* block.png in Resources */,
 				DB6B98A51FB3E943000EA66A /* gun.png in Resources */,
 			);
@@ -224,10 +247,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AE1C4721FB7F44400A8632B /* GUI_Button.cpp in Sources */,
 				DB1F92BF1FAE95C1002BA52D /* Entity.cpp in Sources */,
 				DB6B98A31FB3C814000EA66A /* Player.cpp in Sources */,
+				0AE1C4711FB7F44400A8632B /* GUI_Text.cpp in Sources */,
 				3F52B77B1FB2AC4300BFDE4E /* Weapon.cpp in Sources */,
 				3F216EA31FB3E88C00AEF021 /* Bullet.cpp in Sources */,
+				0AE1C4731FB7F44400A8632B /* GUI_Object.cpp in Sources */,
 				DB1F92A91FAE38DD002BA52D /* main.cpp in Sources */,
 				3F52B7771FB292C900BFDE4E /* Enemy.cpp in Sources */,
 				DB1F92A61FAE38DD002BA52D /* ResourcePath.mm in Sources */,

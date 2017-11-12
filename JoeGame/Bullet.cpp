@@ -19,7 +19,7 @@ Bullet::Bullet(double _mass, vector<int> &_type, Vector2f _size, Vector2f _posit
     isPlayer = _isPlayer;
 }
 
-void Bullet::update(vector<Object> &objectcol, vector<Player> &playercol, vector<Enemy> &enemycol, vector<Magnet> &magnetCol){
+void Bullet::update(vector<Object> &objectcol, Player* playercol, vector<Enemy> &enemycol, vector<Magnet> &magnetCol){
     // Add gravity force
     addForce(Vector2f(0, GRAVITY * mass), 0);
     // Add acceleration to velocity
@@ -43,12 +43,11 @@ void Bullet::update(vector<Object> &objectcol, vector<Player> &playercol, vector
     }
 
     if(!isPlayer){
-        for(int i = 0; i < playercol.size(); i++){
-            if(collidesWith(playercol.at(i))){
-                DealDamage(playercol.at(i), damage);
-                Destroy();
-            }
+        if(collidesWith(*playercol)){
+            DealDamage(*playercol, damage);
+            Destroy();
         }
+
     }else{
         for(int i = 0; i < enemycol.size(); i++){
             if(collidesWith(enemycol.at(i))){
