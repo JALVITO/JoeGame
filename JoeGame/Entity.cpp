@@ -46,6 +46,12 @@ void Entity::update(vector<Object> &colliders){
         collidesWith(colliders.at(i), 1);
     }
     
+    // Add friction to velocity
+    if(velocity.x > 0)
+        velocity.x -= FRICTION;
+    else if(velocity.x < 0)
+        velocity.x += FRICTION;
+    
     if (velocity.y != 0)
         isGrounded = false;
     
@@ -56,6 +62,9 @@ void Entity::update(vector<Object> &colliders){
 bool Entity::collidesWith(Object &other, int axis){
     Rect<float> ownBounds = sprite.getGlobalBounds();
     Rect<float> otherBounds = other.getSprite()->getGlobalBounds();
+    
+    //cout << "top: " << ownBounds.top << endl;
+    //cout << "bottom: " << otherBounds.top + otherBounds.height << endl;
     
     if(ownBounds.left + ownBounds.width > otherBounds.left)
         if(ownBounds.left < otherBounds.left + otherBounds.width)

@@ -12,6 +12,8 @@
 #include "Enemy.h"
 #include "Player.h"
 
+class Magnet;
+
 class Bullet : public Object{
 protected:
     int damage;
@@ -20,7 +22,7 @@ protected:
 public:
     Bullet();
     Bullet(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _damage, bool isPlayer);
-    void update(vector<Object> &objectcol, vector<Player> &playercol, vector<Enemy> &enemycol);
+    void update(vector<Object> &objectcol, vector<Player> &playercol, vector<Enemy> &enemycol, vector<Magnet> &magnetCol);
     void DealDamage(Entity &other, int _damage);
     bool collidesWith(Object &other);
 

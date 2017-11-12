@@ -12,7 +12,9 @@
 #include "Entity.h"
 #include "Weapon.h"
 
+
 class Bullet;
+class Magnet;
 
 class Player : public Entity{
 protected:
@@ -25,7 +27,7 @@ protected:
 public:
     Player();
     Player(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp, float _jumpForce, float _moveForce, Weapon* _weapon);
-    void update(vector<Object> &colliders);
+    void update(vector<Object> &objectCol, vector<Magnet> &magnetCol);
     void draw(RenderWindow* window);
     void pointWeapon(RenderWindow* window);
     void fireWeapon(vector<Bullet> &bullets);

@@ -9,6 +9,7 @@
 #include <stdio.h>
 
 #include "Bullet.h"
+#include "Magnet.h"
 
 Bullet::Bullet(){};
 
@@ -18,7 +19,7 @@ Bullet::Bullet(double _density, vector<int> &_type, Vector2f _size, Vector2f _po
     isPlayer = _isPlayer;
 }
 
-void Bullet::update(vector<Object> &objectcol, vector<Player> &playercol, vector<Enemy> &enemycol){
+void Bullet::update(vector<Object> &objectcol, vector<Player> &playercol, vector<Enemy> &enemycol, vector<Magnet> &magnetCol){
     // Add gravity force
     addForce(Vector2f(0, GRAVITY * mass), 0);
     // Add acceleration to velocity
@@ -30,6 +31,13 @@ void Bullet::update(vector<Object> &objectcol, vector<Player> &playercol, vector
     sprite.setPosition(position);
     for(int i = 0; i < objectcol.size(); i++){
         if(collidesWith(objectcol.at(i))){
+            Destroy();
+        }
+    }
+    
+    for(int i = 0; i < magnetCol.size(); i++){
+        if(collidesWith(magnetCol.at(i))){
+            DealDamage(magnetCol.at(i), damage);
             Destroy();
         }
     }
