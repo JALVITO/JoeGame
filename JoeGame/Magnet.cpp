@@ -16,9 +16,6 @@ Magnet::Magnet(){}
 Magnet::Magnet(double _mass, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp, float _pullingForce) : Entity(_mass, _type, _size, _position, texture, _maxHp){
     
     pullingForce = _pullingForce;
-    sprite.setColor(Color::Color(255, 255, 200));
-    if(pullingForce < -200)
-        sprite.setColor(Color::Color(150, 150, 150));
 }
 
 void Magnet::excertForce(Object *other){
