@@ -19,9 +19,10 @@ protected:
     double firingRate, firingForce;
     Texture bulletTexture;
     bool isPlayer;
+    vector<int> bulletType;
 public:
     Weapon();
-    Weapon(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, double _firingRate, double _firingForce, Texture* _bulletTexture, bool _isPlayer);
+    Weapon(double _mass, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, double _firingRate, double _firingForce, Texture* _bulletTexture, bool _isPlayer, vector<int>& _bulletType);
     void fire(vector<Bullet> &bullets);
 };
 

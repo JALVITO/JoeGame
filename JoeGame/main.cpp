@@ -30,7 +30,9 @@ int main(int, char const**)
     
     
     // Load a sprite to display
-    sf::Texture playerTexture, blockTexture, magnetTexture, gunTexture, bulletTexture, guiTexture, buttonTexture;
+
+    sf::Texture playerTexture, blockTexture, attractorTexture, repellerTexture, gunTexture, bulletTexture, guiTexture, buttonTexture;
+    
     if (!playerTexture.loadFromFile(resourcePath() + "pacman.png")) {
         return EXIT_FAILURE;
     }
@@ -47,7 +49,11 @@ int main(int, char const**)
         return EXIT_FAILURE;
     }
     
-    if (!magnetTexture.loadFromFile(resourcePath() + "magnet.png")) {
+    if (!attractorTexture.loadFromFile(resourcePath() + "attractor.png")) {
+        return EXIT_FAILURE;
+    }
+    
+    if (!repellerTexture.loadFromFile(resourcePath() + "repeller.png")) {
         return EXIT_FAILURE;
     }
     if (!guiTexture.loadFromFile(resourcePath() + "gui.png")) {
@@ -72,19 +78,19 @@ int main(int, char const**)
     vector<int> type_NM = {1, 0, 1, 1};
     vector<int> type_NG_NM = {0, 0, 1, 1};
     
-    Weapon weapon = Weapon(1, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 1, &bulletTexture, true);
+    Weapon weapon = Weapon(0.001, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 15, &bulletTexture, true, type_NG);
 
-    allObjects.push_back(Object(5, type_NG_NM, Vector2f(1000, 64), Vector2f(-100, 550), &blockTexture));
+    allObjects.push_back(Object(5, type_NG_NM, Vector2f(1000, 64), Vector2f(-100, 555), &blockTexture));
     allObjects.push_back(Object(5, type_NG_NM, Vector2f(1000, 64), Vector2f(-100, 150), &blockTexture));
     allObjects.push_back(Object(5, type_NG_NM, Vector2f(64, 800), Vector2f(500, 0), &blockTexture));
     allObjects.push_back(Object(5, type_NG_NM, Vector2f(64, 800), Vector2f(50, 0), &blockTexture));
-    allPlayers.push_back(Player(1, type_NG, Vector2f(32, 64), Vector2f(150, 275), &playerTexture, 100, 0, 0, &weapon));
+    allPlayers.push_back(Player(0.1, type, Vector2f(50, 50), Vector2f(300, 400), &playerTexture, 100, 0, 0, &weapon));
     
-    allEnemies.push_back(Enemy(1, type_NG, Vector2f(32,64), Vector2f(200,225), &playerTexture, 100, &weapon));
+    allEnemies.push_back(Enemy(0.1, type, Vector2f(32,64), Vector2f(200,225), &playerTexture, 100, &weapon));
     
-    allMagnets.push_back((Magnet(1, type_NG, Vector2f(50, 50), Vector2f(300, 350), &magnetTexture, 50, 0.3)));
+    allMagnets.push_back((Magnet(1, type_NG, Vector2f(50, 50), Vector2f(250, 250), &repellerTexture, 50, 800)));
     
-    //allMagnets.push_back((Magnet(1, type_NG, Vector2f(50, 50), Vector2f(300, 450), &magnetTexture, 50, 0.3)));
+    allMagnets.push_back((Magnet(1, type_NG, Vector2f(50, 50), Vector2f(250, 450), &attractorTexture, 50, -800)));
     
     GUI_Object guiobj = GUI_Object(Vector2f(16,16), Vector2f(200,200), &guiTexture);
     
@@ -106,7 +112,7 @@ int main(int, char const**)
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
-            float fuck_copy_paste = 10;
+            float fuck_copy_paste = 5;
             if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::A) {
                 KEY_INPUTS[1] = 1;
                 //allPlayers.at(0).setSelfVelocity(Vector2f(-fuck_copy_paste, 0));
@@ -119,7 +125,7 @@ int main(int, char const**)
             
             if((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::W || event.key.code == sf::Keyboard::Space)) {
                 if(allPlayers.at(0).isItGrounded())
-                    allPlayers.at(0).addForce(Vector2f(0, -fuck_copy_paste * 2.5));
+                    allPlayers.at(0).addForce(Vector2f(0, -fuck_copy_paste));
             }
             
             if(event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::A) {
@@ -157,6 +163,10 @@ int main(int, char const**)
         
         // Update Magnet physics
         for(int i = 0; i < allMagnets.size(); i++){
+            if (allMagnets.at(i).isItDestroyed()){
+                allMagnets.erase(allMagnets.begin() + i);
+                continue;
+            }
             allMagnets.at(i).update(allObjects, allBullets, allPlayers, allEnemies);
         }
         
@@ -166,12 +176,12 @@ int main(int, char const**)
                 allBullets.erase(allBullets.begin() + i);
                 continue;
             }
-            allBullets.at(i).update(allObjects, allPlayers, allEnemies);
+            allBullets.at(i).update(allObjects, allPlayers, allEnemies, allMagnets);
         }
         
         // Update Player physics
         for(int i = 0; i < allPlayers.size(); i++){
-            allPlayers.at(i).update(allObjects);
+            allPlayers.at(i).update(allObjects, allMagnets);
         }
         
         // Update Enemy physics

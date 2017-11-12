@@ -11,7 +11,7 @@
 
 Entity::Entity(){};
 
-Entity::Entity(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp) : Object(_density, _type, _size, _position, texture){
+Entity::Entity(double _mass, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp) : Object(_mass, _type, _size, _position, texture){
     
     maxHp = _maxHp;
     hp = maxHp;
@@ -46,6 +46,12 @@ void Entity::update(vector<Object> &colliders){
         collidesWith(colliders.at(i), 1);
     }
     
+    // Add friction to velocity
+    if(velocity.x > 0)
+        velocity.x -= FRICTION;
+    else if(velocity.x < 0)
+        velocity.x += FRICTION;
+    
     if (velocity.y != 0)
         isGrounded = false;
     
@@ -56,6 +62,9 @@ void Entity::update(vector<Object> &colliders){
 bool Entity::collidesWith(Object &other, int axis){
     Rect<float> ownBounds = sprite.getGlobalBounds();
     Rect<float> otherBounds = other.getSprite()->getGlobalBounds();
+    
+    //cout << "top: " << ownBounds.top << endl;
+    //cout << "bottom: " << otherBounds.top + otherBounds.height << endl;
     
     if(ownBounds.left + ownBounds.width > otherBounds.left)
         if(ownBounds.left < otherBounds.left + otherBounds.width)

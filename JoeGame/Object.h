@@ -29,7 +29,8 @@ using namespace sf;
 class Object{
 
 protected:
-    float GRAVITY = 1;
+    float GRAVITY = 0.1;
+    float FRICTION = 0.01;
     Vector2f acceleration;
     Vector2f velocity;
     Vector2f position;
@@ -61,6 +62,7 @@ public:
     void setPosition(Vector2f _position);
     void Destroy();
     bool isItDestroyed();
+    static float getAtan(Vector2f coordinates, bool radians = true);
     Vector2f getSize();
 };
 

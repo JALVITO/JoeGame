@@ -35,6 +35,12 @@ void Object::update(){
     acceleration = Vector2f();
     // Add velocity to position
     position += velocity;
+    // Add friction to velocity
+    if(velocity.x > 0)
+        velocity.x -= FRICTION;
+    else if(velocity.x < 0)
+        velocity.x += FRICTION;
+    
     sprite.setPosition(position);
 }
 
@@ -59,6 +65,12 @@ void Object::update(vector<Object> &colliders){
     for(int i = 0; i < colliders.size(); i++){
         collidesWith(colliders.at(i), 1);
     }
+    
+    // Add friction to velocity
+    if(velocity.x > 0)
+        velocity.x -= FRICTION;
+    else if(velocity.x < 0)
+        velocity.x += FRICTION;
     
     if (velocity.y != 0)
         isGrounded = false;
@@ -167,6 +179,33 @@ void Object::Destroy(){
 
 Vector2f Object::getSize(){
     return size;
+}
+
+float Object::getAtan(Vector2f coordinates, bool radians){
+    float angle = atan(coordinates.x / coordinates.y);
+    
+    if(!coordinates.x && coordinates.y < 0){
+        
+        angle = M_PI;
+    }
+    
+    if (angle < 0){
+        if (coordinates.x < 0)
+            angle = -angle;
+        else
+            angle = M_PI - angle;
+    }
+    else{
+        if (coordinates.x < 0)
+            angle = M_PI - angle;
+        else
+            angle = -angle;
+    }
+    
+    if(!radians)
+        angle = angle*180/M_PI;
+    
+    return angle;
 }
 
 

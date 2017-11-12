@@ -19,7 +19,7 @@ protected:
     double pullingForce;
 public:
     Magnet();
-    Magnet(double _density, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp, float _pullingForce);
+    Magnet(double _mass, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp, float _pullingForce);
     void excertForce(Object* other);
     void update(vector<Object> &objectCol, vector<Bullet>  &bulletCol, vector<Player> &playerCol, vector<Enemy> &enemyCol);
 };
