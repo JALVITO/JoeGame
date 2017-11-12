@@ -9,6 +9,9 @@
 #include "Bullet.h"
 #include "Enemy.h"
 #include "Magnet.h"
+#include "GUI_Object.h"
+#include "GUI_Text.h"
+#include "GUI_Button.h"
 
 int main(int, char const**)
 {
@@ -27,7 +30,7 @@ int main(int, char const**)
     
     
     // Load a sprite to display
-    sf::Texture playerTexture, blockTexture, magnetTexture, gunTexture, bulletTexture;
+    sf::Texture playerTexture, blockTexture, magnetTexture, gunTexture, bulletTexture, guiTexture, buttonTexture;
     if (!playerTexture.loadFromFile(resourcePath() + "pacman.png")) {
         return EXIT_FAILURE;
     }
@@ -47,6 +50,13 @@ int main(int, char const**)
     if (!magnetTexture.loadFromFile(resourcePath() + "magnet.png")) {
         return EXIT_FAILURE;
     }
+    if (!guiTexture.loadFromFile(resourcePath() + "gui.png")) {
+        return EXIT_FAILURE;
+    }
+    if (!buttonTexture.loadFromFile(resourcePath() + "2.png")) {
+        return EXIT_FAILURE;
+    }
+    
     
     int MOUSE_INPUTS[3] = {0, 0, 0}; // LEFT, MIDDLE, RIGHT
     int KEY_INPUTS[5] = {0, 0, 0, 0, 0}; // W, A, S, D, SPACEBAR
@@ -76,6 +86,14 @@ int main(int, char const**)
     
     //allMagnets.push_back((Magnet(1, type_NG, Vector2f(50, 50), Vector2f(300, 450), &magnetTexture, 50, 0.3)));
     
+    GUI_Object guiobj = GUI_Object(Vector2f(16,16), Vector2f(200,200), &guiTexture);
+    
+    Font font;
+    if (!font.loadFromFile(resourcePath() + "sansation.ttf")) {
+        return EXIT_FAILURE;
+    }
+    GUI_Text guitext = GUI_Text(Vector2f(0,0), "hola", 30, &font, Color::Red);
+    GUI_Button guibutton = GUI_Button(Vector2f(16,16), Vector2f(100,100), &buttonTexture, guitext, &guiTexture);
     
     // Start the game loop
     while (window.isOpen())
@@ -203,7 +221,9 @@ int main(int, char const**)
         for(int i = 0; i < allBullets.size(); i++){
             allBullets.at(i).draw(&window);
         }
-        
+        guiobj.draw(&window);
+        guitext.draw(&window);
+        guibutton.draw(&window);
         // Update the window
         window.display();
     }
