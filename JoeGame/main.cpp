@@ -79,7 +79,7 @@ int main(int, char const**)
     vector<int> type_NM = {1, 0, 1, 1};
     vector<int> type_NG_NM = {0, 0, 1, 1};
     
-    Weapon weapon = Weapon(1, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 3, &bulletTexture, true, type_NG, 0.75, 2, Vector2f(64, 64));
+    Weapon weapon = Weapon(1, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 3, &bulletTexture, true, type_NG, 0.75, 2, Vector2f(16, 16));
     
     player = new Player(1, type, Vector2f(50, 50), Vector2f(150, 500), &playerTexture, 100, 10, 3, &weapon);
 
@@ -90,9 +90,9 @@ int main(int, char const**)
     
     //allEnemies.push_back(Enemy(0.1, type, Vector2f(32,64), Vector2f(200,225), &playerTexture, 100, &weapon));
     
-    allMagnets.push_back((Magnet(1, type_NG, Vector2f(64, 64), Vector2f(250, 250), &repellerTexture, 50, 800)));
+    //allMagnets.push_back((Magnet(1, type_NG, Vector2f(64, 64), Vector2f(250, 250), &repellerTexture, 50, 800)));
     
-    allMagnets.push_back((Magnet(1, type_NG, Vector2f(32, 32), Vector2f(350, 355), &attractorTexture, 50, -800)));
+    //allMagnets.push_back((Magnet(1, type_NG, Vector2f(32, 32), Vector2f(350, 355), &attractorTexture, 50, -800)));
     
     GUI_Object guiobj = GUI_Object(Vector2f(16,16), Vector2f(200,200), &guiTexture);
     
@@ -147,6 +147,23 @@ int main(int, char const**)
             if(event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Button::Left) {
                 MOUSE_INPUTS[0] = 0;
                 //allPlayers.at(0).fireWeapon(allBullets);
+            }
+            
+            //Magnet debugging
+            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::N) {
+                Vector2f mousePos = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
+                mousePos -= Vector2f(16,16);
+                allMagnets.push_back((Magnet(1, type_NG, Vector2f(32, 32), mousePos, &attractorTexture, 50, -800)));
+            }
+            
+            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::M) {
+                Vector2f mousePos = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
+                mousePos -= Vector2f(16,16);
+                allMagnets.push_back((Magnet(1, type_NG, Vector2f(32, 32), mousePos, &repellerTexture, 50, 800)));
+            }
+            
+            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::B) {
+                allMagnets.clear();
             }
         }
         
