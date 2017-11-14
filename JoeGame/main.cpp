@@ -34,7 +34,7 @@ int main(int, char const**)
 
     sf::Texture playerTexture, blockTexture, attractorTexture, repellerTexture, gunTexture, bulletTexture, guiTexture, buttonTexture;
     
-    if (!playerTexture.loadFromFile(resourcePath() + "pacman.png")) {
+    if (!playerTexture.loadFromFile(resourcePath() + "joe.png")) {
         return EXIT_FAILURE;
     }
     
@@ -76,7 +76,6 @@ int main(int, char const**)
     vector<Loot> allLoots;
     
     
-    
     vector<int> type = {1, 1, 1, 1};
     vector<int> type_NG = {0, 1, 1, 1};
     vector<int> type_NM = {1, 0, 1, 1};
@@ -84,7 +83,7 @@ int main(int, char const**)
     
     allLoots.push_back(Loot(0.05, type, Vector2f(12, 12), Vector2f(350, 350), &gunTexture, 0, 3));
     
-    Weapon weapon = Weapon(1, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 8, 3, &bulletTexture, true, type_NG, 0.15, 2, Vector2f(16, 16));
+    Weapon weapon = Weapon(1, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 3, &bulletTexture, true, type_NG, 0.15, 2, Vector2f(16, 16));
     
     Magnet lootMagnet = Magnet(1, type_NG, Vector2f(32, 32), Vector2f(), &attractorTexture, 50, -30);
     
