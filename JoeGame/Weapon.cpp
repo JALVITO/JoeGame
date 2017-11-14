@@ -21,11 +21,26 @@ Weapon::Weapon(double _mass, vector<int> &_type, Vector2f _size, Vector2f _posit
     bulletMass = _bulletMass;
     bulletDamage = _bulletDamage;
     bulletSize = _bulletSize;
+    canFire = true;
 }
 
 void Weapon::fire(vector<Bullet> &bullets){
+    if(!canFire)
+        return;
     Bullet newBullet = Bullet(bulletMass, bulletType, bulletSize, Vector2f(position.x, position.y), &bulletTexture, bulletDamage, isPlayer);
     Vector2f force = Vector2f(firingForce * cos(sprite.getRotation() * M_PI / 180), firingForce * sin(sprite.getRotation() * M_PI / 180));
     newBullet.addForce(force);
     bullets.push_back(newBullet);
+    canFire = false;
+}
+
+void Weapon::update(){
+    sprite.setPosition(position);
+    if(!canFire){
+        timeUntilNextFire -= 1;
+        if(timeUntilNextFire <= 0){
+            timeUntilNextFire = 60 / firingRate;
+            canFire = true;
+        }
+    }
 }

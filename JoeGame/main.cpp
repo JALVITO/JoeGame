@@ -82,11 +82,11 @@ int main(int, char const**)
     vector<int> type_NM = {1, 0, 1, 1};
     vector<int> type_NG_NM = {0, 0, 1, 1};
     
-    allLoots.push_back(Loot(0.01, type, Vector2f(12, 12), Vector2f(350, 350), &gunTexture, 0, 3));
+    allLoots.push_back(Loot(0.05, type, Vector2f(12, 12), Vector2f(350, 350), &gunTexture, 0, 3));
     
-    Weapon weapon = Weapon(1, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 3, &bulletTexture, true, type_NG, 0.15, 2, Vector2f(16, 16));
+    Weapon weapon = Weapon(1, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 8, 3, &bulletTexture, true, type_NG, 0.15, 2, Vector2f(16, 16));
     
-    Magnet lootMagnet = Magnet(1, type_NG, Vector2f(32, 32), Vector2f(), &attractorTexture, 50, -50);
+    Magnet lootMagnet = Magnet(1, type_NG, Vector2f(32, 32), Vector2f(), &attractorTexture, 50, -30);
     
     player = new Player(0.75, type, Vector2f(50, 50), Vector2f(150, 500), &playerTexture, 100, 10, 5, &weapon, &lootMagnet);
 
