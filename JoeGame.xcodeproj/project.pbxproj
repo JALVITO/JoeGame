@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0CB6D71FBABC610061FF0F /* Loot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CB6D61FBABC610061FF0F /* Loot.cpp */; };
 		0A5D0E011FB6172800E863A0 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A5D0E001FB6172800E863A0 /* bullet.png */; };
 		0A5D0E041FB6266D00E863A0 /* Magnet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A5D0E031FB6266D00E863A0 /* Magnet.cpp */; };
 		0AD1BCCA1FAEF75300FAD766 /* pacman.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AD1BCC91FAEF75300FAD766 /* pacman.png */; };
@@ -32,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A0CB6D51FBABBF30061FF0F /* Loot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Loot.h; sourceTree = "<group>"; };
+		0A0CB6D61FBABC610061FF0F /* Loot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Loot.cpp; sourceTree = "<group>"; };
 		0A5D0E001FB6172800E863A0 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
 		0A5D0E021FB620D900E863A0 /* Magnet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Magnet.h; sourceTree = "<group>"; };
 		0A5D0E031FB6266D00E863A0 /* Magnet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Magnet.cpp; sourceTree = "<group>"; };
@@ -122,6 +125,8 @@
 				0AE1C46F1FB7F44300A8632B /* GUI_Object.cpp */,
 				0AE1C4701FB7F44300A8632B /* GUI_Text.h */,
 				0AE1C46C1FB7F44300A8632B /* GUI_Text.cpp */,
+				0A0CB6D51FBABBF30061FF0F /* Loot.h */,
+				0A0CB6D61FBABC610061FF0F /* Loot.cpp */,
 				DB1F92AA1FAE38DD002BA52D /* Resources */,
 				DB1F92A31FAE38DD002BA52D /* Supporting Files */,
 			);
@@ -254,6 +259,7 @@
 				3F52B77B1FB2AC4300BFDE4E /* Weapon.cpp in Sources */,
 				3F216EA31FB3E88C00AEF021 /* Bullet.cpp in Sources */,
 				0AE1C4731FB7F44400A8632B /* GUI_Object.cpp in Sources */,
+				0A0CB6D71FBABC610061FF0F /* Loot.cpp in Sources */,
 				DB1F92A91FAE38DD002BA52D /* main.cpp in Sources */,
 				3F52B7771FB292C900BFDE4E /* Enemy.cpp in Sources */,
 				DB1F92A61FAE38DD002BA52D /* ResourcePath.mm in Sources */,

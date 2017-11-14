@@ -10,6 +10,7 @@
 
 #include "Bullet.h"
 #include "Magnet.h"
+#include "Player.h"
 
 Bullet::Bullet(){};
 

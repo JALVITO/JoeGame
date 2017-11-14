@@ -10,18 +10,21 @@
 #include "Player.h"
 #include <math.h>
 #include "Bullet.h"
-#include "Magnet.h"
+
 
 Player::Player(){};
 
-Player::Player(double _mass, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp, float _jumpForce, float _moveForce, Weapon* _weapon) : Entity(_mass, _type, _size, _position, texture, _maxHp){
+Player::Player(double _mass, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp, float _jumpForce, float _moveForce, Weapon* _weapon, Magnet* _lootMagnet) : Entity(_mass, _type, _size, _position, texture, _maxHp){
     jumpForce = _jumpForce;
     moveForce = _moveForce;
     weapon = *_weapon;
+    lootMagnet = *_lootMagnet;
+    gold = 0;
+    gems = 0;
     selfVelocity = Vector2f();
 }
 
-void Player::update(vector<Object> &objectCol, vector<Magnet> &magnetCol){
+void Player::update(vector<Object> &objectCol, vector<Magnet> &magnetCol, vector<Loot> &lootCol){
     // Add gravity force
     addForce(Vector2f(0, GRAVITY * mass), 0);
     // Add acceleration to velocity
@@ -68,9 +71,16 @@ void Player::update(vector<Object> &objectCol, vector<Magnet> &magnetCol){
     
     if(hp <= 0)
         die();
+    
+    // Update Weapon
     weapon.setPosition(getPosition());
     weapon.update();
     //pointWeapon();
+    
+    // Update Loot Magnet
+    lootMagnet.setPosition(position);
+    lootMagnet.update(lootCol);
+    
 }
 
 void Player::draw(RenderWindow* window){
@@ -108,5 +118,16 @@ void Player::fireWeapon(vector<Bullet> &bullets){
 Weapon* Player::getWeapon(){
     return &weapon;
 }
+
+void Player::getLoot(int lootType, int lootAmount){
+    if(!lootType)
+        gold += lootAmount;
+    else
+        gems += lootAmount;
+    
+    
+    cout << gold << endl;
+}
+
 
 

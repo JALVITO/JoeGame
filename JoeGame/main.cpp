@@ -73,15 +73,22 @@ int main(int, char const**)
     vector<Enemy> allEnemies;
     vector<Bullet> allBullets;
     vector<Magnet> allMagnets;
+    vector<Loot> allLoots;
+    
+    
     
     vector<int> type = {1, 1, 1, 1};
     vector<int> type_NG = {0, 1, 1, 1};
     vector<int> type_NM = {1, 0, 1, 1};
     vector<int> type_NG_NM = {0, 0, 1, 1};
     
-    Weapon weapon = Weapon(1, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 3, &bulletTexture, true, type_NG, 0.75, 2, Vector2f(16, 16));
+    allLoots.push_back(Loot(0.01, type, Vector2f(12, 12), Vector2f(350, 350), &gunTexture, 0, 3));
     
-    player = new Player(1, type, Vector2f(50, 50), Vector2f(150, 500), &playerTexture, 100, 10, 3, &weapon);
+    Weapon weapon = Weapon(1, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 20, 3, &bulletTexture, true, type_NG, 0.15, 2, Vector2f(16, 16));
+    
+    Magnet lootMagnet = Magnet(1, type_NG, Vector2f(32, 32), Vector2f(), &attractorTexture, 50, -50);
+    
+    player = new Player(0.75, type, Vector2f(50, 50), Vector2f(150, 500), &playerTexture, 100, 10, 5, &weapon, &lootMagnet);
 
     allObjects.push_back(Object(5, type_NG_NM, Vector2f(1000, 64), Vector2f(-100, 555), &blockTexture));
     allObjects.push_back(Object(5, type_NG_NM, Vector2f(1000, 64), Vector2f(-100, 150), &blockTexture));
@@ -198,8 +205,17 @@ int main(int, char const**)
         }
         
         // Update Player physics
-        player->update(allObjects, allMagnets);
+        player->update(allObjects, allMagnets, allLoots);
         
+        
+        // Update Loot Physics
+        for(int i = 0; i < allLoots.size(); i++){
+            if (allLoots.at(i).isItDestroyed()){
+                allLoots.erase(allLoots.begin() + i);
+                continue;
+            }
+            allLoots.at(i).update(allObjects, player);
+        }
         
         // Update Enemy physics
         for(int i = 0; i < allEnemies.size(); i++){
@@ -246,6 +262,11 @@ int main(int, char const**)
         // Draw Bullets
         for(int i = 0; i < allBullets.size(); i++){
             allBullets.at(i).draw(&window);
+        }
+        
+        // Draw Loot
+        for(int i = 0; i < allLoots.size(); i++){
+            allLoots.at(i).draw(&window);
         }
         // Update the window
         window.display();

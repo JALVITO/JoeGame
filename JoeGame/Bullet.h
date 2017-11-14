@@ -10,9 +10,10 @@
 #define Bullet_h
 #include "Entity.h"
 #include "Enemy.h"
-#include "Player.h"
+
 
 class Magnet;
+class Player;
 
 class Bullet : public Object{
 protected:

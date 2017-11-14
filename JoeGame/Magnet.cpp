@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include "Magnet.h"
+#include "Player.h"
 
 
 
@@ -54,6 +55,15 @@ void Magnet::update(vector<Object> &objectCol, vector<Bullet>  &bulletCol, Playe
     
     for(int i = 0; i < enemyCol.size(); i++){
         excertForce(&enemyCol.at(i));
+    }
+    
+    if(hp <= 0)
+        die();
+}
+
+void Magnet::update(vector<Loot> &lootCol){
+    for(int i = 0; i < lootCol.size(); i++){
+        excertForce(&lootCol.at(i));
     }
     
     if(hp <= 0)
