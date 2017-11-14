@@ -32,7 +32,7 @@ int main(int, char const**)
     
     // Load a sprite to display
 
-    sf::Texture playerTexture, blockTexture, attractorTexture, repellerTexture, gunTexture, bulletTexture, guiTexture, buttonTexture;
+    sf::Texture playerTexture, blockTexture, attractorTexture, repellerTexture, gunTexture, bulletTexture, guiTexture, buttonTexture, goldTexture;
     
     if (!playerTexture.loadFromFile(resourcePath() + "pacman.png")) {
         return EXIT_FAILURE;
@@ -57,6 +57,11 @@ int main(int, char const**)
     if (!repellerTexture.loadFromFile(resourcePath() + "repeller.png")) {
         return EXIT_FAILURE;
     }
+    
+    if (!goldTexture.loadFromFile(resourcePath() + "gold.png")) {
+        return EXIT_FAILURE;
+    }
+    
     if (!guiTexture.loadFromFile(resourcePath() + "gui.png")) {
         return EXIT_FAILURE;
     }
@@ -82,7 +87,7 @@ int main(int, char const**)
     vector<int> type_NM = {1, 0, 1, 1};
     vector<int> type_NG_NM = {0, 0, 1, 1};
     
-    allLoots.push_back(Loot(0.05, type, Vector2f(12, 12), Vector2f(350, 350), &gunTexture, 0, 3));
+    allLoots.push_back(Loot(0.05, type, Vector2f(20, 20), Vector2f(350, 350), &goldTexture, 0, 3));
     
     Weapon weapon = Weapon(1, type_NG_NM, Vector2f(32,24), Vector2f(200,450), &gunTexture, 8, 3, &bulletTexture, true, type_NG, 0.15, 2, Vector2f(16, 16));
     
