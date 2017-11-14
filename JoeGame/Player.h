@@ -21,7 +21,7 @@ protected:
     Weapon weapon;
     RectangleShape rayCast;
     Magnet lootMagnet;
-    int gold, gems;
+    int gold, attracctorGems, repellerGems;
     //Inventory inventory (tbi)
     
     

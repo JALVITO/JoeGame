@@ -20,7 +20,8 @@ Player::Player(double _mass, vector<int> &_type, Vector2f _size, Vector2f _posit
     weapon = *_weapon;
     lootMagnet = *_lootMagnet;
     gold = 0;
-    gems = 0;
+    attracctorGems = 0;
+    repellerGems = 0;
     selfVelocity = Vector2f();
 }
 
@@ -122,9 +123,10 @@ Weapon* Player::getWeapon(){
 void Player::getLoot(int lootType, int lootAmount){
     if(!lootType)
         gold += lootAmount;
-    else
-        gems += lootAmount;
-    
+    else if(lootType == 1)
+        attracctorGems += lootAmount;
+    else if(lootType == 2)
+        repellerGems += lootAmount;
     
     cout << gold << endl;
 }
