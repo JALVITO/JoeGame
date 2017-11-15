@@ -34,7 +34,7 @@ int main(int, char const**)
 
     sf::Texture playerTexture, blockTexture, attractorTexture, repellerTexture, gunTexture, bulletTexture, guiTexture, buttonTexture, goldTexture;
     
-    if (!playerTexture.loadFromFile(resourcePath() + "joeWalking.png")) {
+    if (!playerTexture.loadFromFile(resourcePath() + "joeFinal.png")) {
         return EXIT_FAILURE;
     }
     
