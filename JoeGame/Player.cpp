@@ -17,6 +17,7 @@ Player::Player(){};
 Player::Player(double _mass, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp, float _jumpForce, float _moveForce, Weapon* _weapon, Magnet* _lootMagnet) : Entity(_mass, _type, _size, _position, texture, _maxHp){
     jumpForce = _jumpForce;
     moveForce = _moveForce;
+    facingRight = true;
     weapon = *_weapon;
     lootMagnet = *_lootMagnet;
     gold = 0;
@@ -25,7 +26,7 @@ Player::Player(double _mass, vector<int> &_type, Vector2f _size, Vector2f _posit
     selfVelocity = Vector2f();
 }
 
-void Player::update(vector<Object> &objectCol, vector<Magnet> &magnetCol, vector<Loot> &lootCol){
+void Player::update(vector<Object> &objectCol, vector<Magnet> &magnetCol, vector<Loot> &lootCol, Time time){
     // Add gravity force
     addForce(Vector2f(0, GRAVITY * mass), 0);
     // Add acceleration to velocity
@@ -118,6 +119,14 @@ void Player::fireWeapon(vector<Bullet> &bullets){
 
 Weapon* Player::getWeapon(){
     return &weapon;
+}
+
+void Player::setFacingRight(bool _bool){
+    facingRight = _bool;
+}
+
+bool Player::getFacingRight(){
+    return facingRight;
 }
 
 void Player::getLoot(int lootType, int lootAmount){

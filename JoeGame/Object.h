@@ -57,6 +57,7 @@ public:
     float getVelocityY();
     //void setSprite(Sprite* sprite); TBI
     Sprite* getSprite();
+    void setSprite(Sprite _sprite);
     bool isItGrounded();
     Vector2f getPosition();
     void setPosition(Vector2f _position);

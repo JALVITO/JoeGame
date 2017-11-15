@@ -32,6 +32,7 @@
 		DB357B331FBB4F58003A9305 /* gold.png in Resources */ = {isa = PBXBuildFile; fileRef = DB357B321FBB4F57003A9305 /* gold.png */; };
 		DB6B98A31FB3C814000EA66A /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB6B98A21FB3C814000EA66A /* Player.cpp */; };
 		DB6B98A51FB3E943000EA66A /* gun.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6B98A41FB3E943000EA66A /* gun.png */; };
+		DB6E29CB1FBCECC600A39354 /* joeWalking.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6E29CA1FBCECC600A39354 /* joeWalking.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		DB6B98A11FB3C59F000EA66A /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		DB6B98A21FB3C814000EA66A /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		DB6B98A41FB3E943000EA66A /* gun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gun.png; sourceTree = "<group>"; };
+		DB6E29CA1FBCECC600A39354 /* joeWalking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = joeWalking.png; path = ../../../../../Downloads/joeWalking.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 			children = (
 				0A0CB6D81FBB4A800061FF0F /* joe.png */,
 				0A5D0E001FB6172800E863A0 /* bullet.png */,
+				DB6E29CA1FBCECC600A39354 /* joeWalking.png */,
 				DB357B321FBB4F57003A9305 /* gold.png */,
 				0AD1BCC91FAEF75300FAD766 /* pacman.png */,
 				DB16FA691FB7AE620032DE8D /* attractor.png */,
@@ -222,6 +225,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB6E29CB1FBCECC600A39354 /* joeWalking.png in Resources */,
 				DB16FA6B1FB7AE620032DE8D /* attractor.png in Resources */,
 				0A5D0E011FB6172800E863A0 /* bullet.png in Resources */,
 				DB16FA6A1FB7AE620032DE8D /* repeller.png in Resources */,
