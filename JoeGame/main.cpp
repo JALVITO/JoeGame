@@ -199,6 +199,7 @@ int main(int, char const**)
             if (player->getFacingRight())
                 player->setFacingRight(false);
             
+            // Update sprite
             int spriteOffSet = ((int)clock.getElapsedTime().asMilliseconds()/30) % 9;
             player->setSprite(*new Sprite(*player->getSprite()->getTexture(),IntRect(16*spriteOffSet,16,16,16)));
             
@@ -208,12 +209,12 @@ int main(int, char const**)
         
         if(!KEY_INPUTS[1] && !KEY_INPUTS[3]){
             player->setSelfVelocity(Vector2f(0, player->getSelfVelocity().y));
-            if(player->getFacingRight()){
+            
+            // Update sprite
+            if(player->getFacingRight())
                 player->setSprite(*new Sprite(*player->getSprite()->getTexture(),IntRect(0,0,16,16)));
-            }
-            else{
+            else
                 player->setSprite(*new Sprite(*player->getSprite()->getTexture(),IntRect(16,16,16,16)));
-            }
         }
         
         // Update Magnet physics
