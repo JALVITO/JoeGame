@@ -14,16 +14,20 @@
 
 Player::Player(){};
 
-Player::Player(double _mass, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp, float _jumpForce, float _moveForce, Weapon* _weapon, Magnet* _lootMagnet) : Entity(_mass, _type, _size, _position, texture, _maxHp){
+Player::Player(double _mass, vector<int> &_type, Vector2f _size, Vector2f _position, Texture* texture, int _maxHp, float _jumpForce, float _moveForce, Weapon* _weapon, Magnet* _lootMagnet, int _spriteSheetSize, int _animationSpeed) : Entity(_mass, _type, _size, _position, texture, _maxHp){
     jumpForce = _jumpForce;
     moveForce = _moveForce;
     facingRight = true;
     weapon = *_weapon;
     lootMagnet = *_lootMagnet;
+    spriteSheetSize = _spriteSheetSize;
+    animationSpeed = _animationSpeed;
     gold = 0;
     attracctorGems = 0;
     repellerGems = 0;
     selfVelocity = Vector2f();
+    currentAnimFrame = 0;
+    spriteOffset = 0;
 }
 
 void Player::update(vector<Object> &objectCol, vector<Magnet> &magnetCol, vector<Loot> &lootCol, Time time){
@@ -86,6 +90,35 @@ void Player::update(vector<Object> &objectCol, vector<Magnet> &magnetCol, vector
 }
 
 void Player::draw(RenderWindow* window){
+    if(selfVelocity.x > 0){
+        currentAnimFrame++;
+        if(currentAnimFrame >= 60 / animationSpeed){
+            spriteOffset++;
+            currentAnimFrame = 0;
+            if(spriteOffset >= spriteSheetSize)
+                spriteOffset = 0;
+        }
+        sprite.setTextureRect(IntRect(16 * spriteOffset, 0, 16, 16));
+    }
+    
+    else if(selfVelocity.x < 0){
+        currentAnimFrame++;
+        if(currentAnimFrame >= 60 / animationSpeed){
+            spriteOffset++;
+            currentAnimFrame = 0;
+            if(spriteOffset >= spriteSheetSize)
+                spriteOffset = 0;
+        }
+        sprite.setTextureRect(IntRect(16 * spriteOffset, 16, 16, 16));
+    }
+    else{
+        currentAnimFrame = 0;
+        spriteOffset = 0;
+        if(facingRight)
+            sprite.setTextureRect(IntRect(0, 0, 16, 16));
+        else
+            sprite.setTextureRect(IntRect(0, 16, 16, 16));
+    }
     Entity::draw(window);
     weapon.draw(window);
     pointWeapon(window);

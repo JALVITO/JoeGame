@@ -92,7 +92,7 @@ int main(int, char const**)
     
     Magnet lootMagnet = Magnet(1, type_NG, Vector2f(32, 32), Vector2f(), &attractorTexture, 50, -30);
     
-    player = new Player(0.75, type, Vector2f(50, 50), Vector2f(150, 500), &playerTexture, 100, 10, 5, &weapon, &lootMagnet);
+    player = new Player(0.75, type, Vector2f(50, 50), Vector2f(150, 500), &playerTexture, 100, 10, 5, &weapon, &lootMagnet, 9, 60);
     
     player->setSprite(*new Sprite(playerTexture,IntRect(0,0,16,16)));
 
@@ -189,19 +189,22 @@ int main(int, char const**)
             player->setSelfVelocity(Vector2f(player->getMoveForce(), player->getSelfVelocity().y));
             if (!player->getFacingRight())
                 player->setFacingRight(true);
-            
+            /*/
             // Update sprite
             int spriteOffSet = ((int)clock.getElapsedTime().asMilliseconds()/30) % 9;
             player->setSprite(*new Sprite(*player->getSprite()->getTexture(),IntRect(16*spriteOffSet,0,16,16)));
+             /*/
         }
         
         if(KEY_INPUTS[1]){
             if (player->getFacingRight())
                 player->setFacingRight(false);
             
+            /*/
             // Update sprite
             int spriteOffSet = ((int)clock.getElapsedTime().asMilliseconds()/30) % 9;
             player->setSprite(*new Sprite(*player->getSprite()->getTexture(),IntRect(16*spriteOffSet,16,16,16)));
+            /*/
             
            player->setSelfVelocity(Vector2f(-player->getMoveForce(), player->getSelfVelocity().y));
             
@@ -209,12 +212,13 @@ int main(int, char const**)
         
         if(!KEY_INPUTS[1] && !KEY_INPUTS[3]){
             player->setSelfVelocity(Vector2f(0, player->getSelfVelocity().y));
-            
+            /*/
             // Update sprite
             if(player->getFacingRight())
                 player->setSprite(*new Sprite(*player->getSprite()->getTexture(),IntRect(0,0,16,16)));
             else
                 player->setSprite(*new Sprite(*player->getSprite()->getTexture(),IntRect(16,16,16,16)));
+             /*/
         }
         
         // Update Magnet physics
