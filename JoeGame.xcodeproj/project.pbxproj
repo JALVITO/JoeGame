@@ -32,7 +32,7 @@
 		DB357B331FBB4F58003A9305 /* gold.png in Resources */ = {isa = PBXBuildFile; fileRef = DB357B321FBB4F57003A9305 /* gold.png */; };
 		DB6B98A31FB3C814000EA66A /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB6B98A21FB3C814000EA66A /* Player.cpp */; };
 		DB6B98A51FB3E943000EA66A /* gun.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6B98A41FB3E943000EA66A /* gun.png */; };
-		DB94CAE11FC3A53E00C289E0 /* armFinal.png in Resources */ = {isa = PBXBuildFile; fileRef = DB94CAE01FC3A53E00C289E0 /* armFinal.png */; };
+		DB94CAE51FC3A66100C289E0 /* armCorner.png in Resources */ = {isa = PBXBuildFile; fileRef = DB94CAE41FC3A66100C289E0 /* armCorner.png */; };
 		DBDEF9CC1FBD09820065C30F /* joeFinal.png in Resources */ = {isa = PBXBuildFile; fileRef = DBDEF9CB1FBD09820065C30F /* joeFinal.png */; };
 /* End PBXBuildFile section */
 
@@ -76,7 +76,7 @@
 		DB6B98A11FB3C59F000EA66A /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		DB6B98A21FB3C814000EA66A /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		DB6B98A41FB3E943000EA66A /* gun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gun.png; sourceTree = "<group>"; };
-		DB94CAE01FC3A53E00C289E0 /* armFinal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = armFinal.png; path = ../../../../../Downloads/armFinal.png; sourceTree = "<group>"; };
+		DB94CAE41FC3A66100C289E0 /* armCorner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = armCorner.png; path = ../../../../../Desktop/armCorner.png; sourceTree = "<group>"; };
 		DBDEF9CB1FBD09820065C30F /* joeFinal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joeFinal.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,8 +157,8 @@
 				DB357B321FBB4F57003A9305 /* gold.png */,
 				0AD1BCC91FAEF75300FAD766 /* pacman.png */,
 				DB16FA691FB7AE620032DE8D /* attractor.png */,
-				DB94CAE01FC3A53E00C289E0 /* armFinal.png */,
 				DBDEF9CB1FBD09820065C30F /* joeFinal.png */,
+				DB94CAE41FC3A66100C289E0 /* armCorner.png */,
 				DB16FA681FB7AE620032DE8D /* repeller.png */,
 				DB6B98A41FB3E943000EA66A /* gun.png */,
 				0AE1C4741FB7F4AB00A8632B /* 2.png */,
@@ -240,8 +240,8 @@
 				DBDEF9CC1FBD09820065C30F /* joeFinal.png in Resources */,
 				DB1F92BC1FAE4EC7002BA52D /* block.png in Resources */,
 				DB6B98A51FB3E943000EA66A /* gun.png in Resources */,
-				DB94CAE11FC3A53E00C289E0 /* armFinal.png in Resources */,
 				0A0CB6D91FBB4A800061FF0F /* joe.png in Resources */,
+				DB94CAE51FC3A66100C289E0 /* armCorner.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
